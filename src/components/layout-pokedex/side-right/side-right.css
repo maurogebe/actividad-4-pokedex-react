@@ -1,0 +1,161 @@
+/* Right Side */
+.right-side {
+    width: 40%;
+    height: 100%;
+    background-color: #c70000;
+    border-radius: 0px 50px 50px 0px;
+    border: 3px solid;
+    position: absolute;
+    top: 0;
+    right: 11%;
+    transition: right 1s;
+  }
+  .right-show-pokemons {
+    right: -340px;
+    transition: all 1s;
+  }
+  /* Notch Top */
+  .right-side__notches-top {
+    width: 50%;
+    height: 25%;
+  }
+  .right-side__notches-top--position-absolute {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  .right-side__top-notch-outside {
+    width: 100%;
+    height: 100%;
+    border-left: 4px solid;
+    border-bottom: 4px solid;
+    border-radius: 0 0 0 100%;
+    box-shadow: -1px 0px 0px hsl(0deg 0% 0%);
+  }
+  .right-side__top-notch-in {
+    width: 50%;
+    height: 50%;
+    border-left: 4px solid;
+    border-bottom: 4px solid;
+    border-radius: 0 0 0 100%;
+    position: absolute;
+    top: 0%;
+    right: 0;
+    box-shadow: -1px 0px 0px hsl(0deg 0% 0%);
+  }
+  
+  /* Notch Bottom */
+  .right-side__notches-bottom {
+    width: 50%;
+    height: 25%;
+  }
+  .right-side__notches-bottom--position-absolute {
+    position: absolute;
+    bottom: 0%;
+    right: 0;
+  }
+  .right-side__bottom-notch-outside {
+    width: 100%;
+    height: 100%;
+    border-left: 4px solid;
+    border-top: 4px solid;
+    border-radius: 100% 0 0 0;
+    box-shadow: -1px 0px 1px hsl(0deg 0% 0%);
+  }
+  .right-side__bottom-notch-in {
+    width: 50%;
+    height: 50%;
+    border-left: 4px solid;
+    border-top: 4px solid;
+    border-radius: 100% 0 0 0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    box-shadow: -1px 0px 1px hsl(0deg 0% 0%);
+  }
+  
+  /* Half Pokeball */
+  .right-side__half-pokeball {
+    width: 120%;
+    height: 58%;
+    position: absolute;
+    right: 44%;
+    top: 21%;
+  }
+  .half-right-pokeball {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  .half-right-pokeball__outline-top {
+    width: 50%;
+    height: 50%;
+    border-right: 4px solid white;
+    border-top: 4px solid white;
+    border-radius: 0 100% 0 0;
+    position: relative;
+    right: -53%;
+  }
+  .half-right-pokeball__outline-bottom {
+    width: 50%;
+    height: 50%;
+    border-right: 4px solid white;
+    border-bottom: 4px solid white;
+    border-radius: 0 0 100% 0;
+    position: relative;
+    right: -53%;
+  }
+  .half-right-pokeball__half {
+    width: 97.5%;
+    height: 97%;
+    position: absolute;
+    right: -50%;
+    top: 1.5%;
+  }
+  .half-right-pokeball__half-top {
+    width: 50%;
+    height: 50%;
+    border-right: 50px solid;
+    border-top: 50px solid;
+    border-radius: 0 100% 0 0;
+  }
+  .half-right-pokeball__half-bottom {
+    width: 50%;
+    height: 50%;
+    border-right: 50px solid;
+    border-bottom: 50px solid;
+    border-radius: 0 0 100% 0;
+  }
+  .half-right-pokeball__in {
+    width: 65%;
+    height: 64%;
+    position: absolute;
+    left: 0;
+    top: 18%;
+  }
+  .half-right-pokeball__in-top {
+    width: 50%;
+    height: 50%;
+    border-right: 50px solid white;
+    border-top: 50px solid white;
+    border-radius: 0 100% 0 0;
+  }
+  .half-right-pokeball__in-bottom {
+    width: 50%;
+    height: 50%;
+    border-right: 50px solid white;
+    border-bottom: 50px solid white;
+    border-radius: 0 0 100% 0;
+  }
+  
+  /* Button of Half Pokeball */
+  .half-right-pokeball__button {
+  /*   width: 44%;
+    height: 46%;
+    position: absolute;
+    top: 28%;
+    right: 47px;
+    background: white;
+    box-shadow: -6px 0px 1px hsl(0deg 0% 85%);
+    border-radius: 50%; */
+  }

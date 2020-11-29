@@ -1,0 +1,23 @@
+.pokedex-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    z-index: 999;
+    margin-right: 5px;
+    padding-top: 10px;
+    padding-left: 15px;
+}
+.pokedex-container::-webkit-scrollbar {
+    width: 0.5rem;
+    padding-right: 10px;
+}
+.pokedex-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+.pokedex-container::-webkit-scrollbar-thumb {
+    background: #c70000;
+    border-radius: 5px;
+}

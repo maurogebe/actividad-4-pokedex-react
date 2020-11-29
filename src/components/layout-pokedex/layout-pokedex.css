@@ -1,0 +1,7 @@
+.container-side {
+    width: 44%;
+    height: 80%;
+    position: relative;
+    margin: 0 auto;
+    z-index: 999;
+  }

@@ -1,0 +1,30 @@
+.pagination-row{
+    display: flex;
+    justify-content: space-between;
+    padding: 1em 2em;
+  }
+  
+  .pagination-row > .item{
+    flex-basis: 8%;
+    text-align: center;
+    background-color: #82b0ec;
+    cursor: pointer;
+  }
+  
+  .pagination-row > .item:hover{
+    background-color: #c2c2c2;
+  }
+  
+
+
+/* Main */
+* {
+  box-sizing: border-box;
+}
+.container-style-pokedex {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(180deg, #4fd0ff 0%, #00404c 100%);
+  padding-top: 50px;
+}
+  

@@ -1,0 +1,71 @@
+.container-region {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-items: center;
+    grid-gap: 3% 0;
+    padding-top: 1%;
+}
+.outline {
+    width: 140px;
+    height: 140px;
+    border: 15px solid #008bbda3;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+  }
+  .in {
+    width: 80%;
+    height: 80%;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ececec;
+  }
+  .in-top {
+    height: 40%;
+    width: 90%;
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 5%
+  }
+  .in-top--left {
+    height: 100%;
+    width: 50%;
+    border-left: 30px solid #008bbda3;
+    border-top: 30px solid #008bbda3;
+    border-radius: 100% 0 0 0;
+  }
+  .in-top--right {
+    height: 100%;
+    width: 50%;
+    border-right: 30px solid #008bbda3;
+    border-top: 30px solid #008bbda3;
+    border-radius: 0 100% 0 0;
+  }
+  
+  .in-bottom {
+    height: 40%;
+    width: 90%;
+    display: flex;
+    position: absolute;
+    bottom: 0%;
+    left: 5%;
+  }
+  .in-bottom--left {
+    height: 100%;
+    width: 50%;
+    border-left: 30px solid #008bbda3;
+    border-bottom: 30px solid #008bbda3;
+    border-radius: 0 0 0 100%;
+  }
+  .in-bottom--right {
+    height: 100%;
+    width: 50%;
+    border-right: 30px solid #008bbda3;
+    border-bottom: 30px solid #008bbda3;
+    border-radius: 0 0 100% 0;
+  }

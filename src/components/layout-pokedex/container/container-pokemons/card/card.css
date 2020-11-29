@@ -1,0 +1,224 @@
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* border: 2px solid white; */
+  border-radius: 20%;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  position: relative;
+  background: rgb(255 255 255 / 20%);
+  height: 150px;
+  cursor: pointer;
+}
+.img-pokemon {
+  width: 150px;
+  margin-top: 10px;
+  position: absolute;
+  bottom: 0%;
+}
+/* .img-pokemon:hover {
+  width: 150px;
+  position: absolute;
+  top: 10%;
+  transition: all 1s;
+} */
+.title-pokemon {
+  position: absolute;
+  top: -8%;
+  left: 10%;
+}
+.text-pokemon {
+  text-transform: capitalize;
+}
+.type {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  border-radius: 10px;
+}
+.type-normal {
+  background-color: #929191;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  border-radius: 10px;
+}
+.type-fighting {
+  background-color: #ab0000;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  border-radius: 10px;
+}
+.type-flying {
+  background-color: #03a9f4;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  border-radius: 10px;
+}
+.type-poison {
+  background-color: #9c27b0;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  border-radius: 10px;
+}
+.type-ground {
+  background-color: #b08400;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  border-radius: 10px;
+}
+.type-rock {
+  background-color: #9e5e00;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  border-radius: 10px;
+}
+.type-bug {
+  background-color: #8d9c00;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  border-radius: 10px;
+}
+.type-ghost {
+  background-color: #512da8;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  border-radius: 10px;
+}
+.type-steel {
+  background-color: #85929E;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  border-radius: 10px;
+}
+.type-fire {
+  background-color: #ff3f03;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  border-radius: 10px;
+}
+.type-water {
+  background-color: #0328f4;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  border-radius: 10px;
+}
+.type-grass {
+  background-color: #00a60f;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  border-radius: 10px;
+}
+.type-electric {
+  background-color: #ffbf00;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  border-radius: 10px;
+}
+.type-psychic {
+  background-color: #ff00c4;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  border-radius: 10px;
+}
+.type-ice {
+  background-color: #00eee7;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  border-radius: 10px;
+}
+.type-dragon {
+  background-color: #4908bd;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  border-radius: 10px;
+}
+.type-dark {
+  background-color: #3e2723;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  border-radius: 10px;
+}
+.type-fairy {
+  background-color: #e440ff;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  border-radius: 10px;
+}
+.type-unknown {
+  background-color: #455a64;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  border-radius: 10px;
+}
+.type-shadow {
+  background-color: black;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  border-radius: 10px;
+}
+.type-secondary {
+  top: 30%;
+}
