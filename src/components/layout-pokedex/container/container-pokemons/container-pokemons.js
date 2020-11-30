@@ -1,5 +1,6 @@
-import React from 'react';
-import axios from 'axios'
+import React, { useState, useRef } from 'react';
+import axios from 'axios';
+// import AWS from 'aws-sdk'
 
 // Import Components
 import Card from './card/card';
@@ -7,11 +8,13 @@ import Card from './card/card';
 // Import style
 import './container-pokemons.css';
 
-class ContainerPokemons extends React.Component {
+function ContainerPokemons(props) {
 
-  getImg = (name, id) => {
+  let valueScroll = useRef(0)
 
-    const urlImg = `https://projectpokemon.org/images/sprites-models/pgo-sprites/pokemon_icon_${this.props.imgPokemonsFn(id)}_00.png`
+  const getImgFn = (name, id) => {
+
+    const urlImg = `https://projectpokemon.org/images/sprites-models/pgo-sprites/pokemon_icon_${props.imgPokemonsFn(id)}_00.png`
 
     // const urlImg = `https://www.pokencyclopedia.info/sprites/artworks/ken-sugimori/art__${id}.png`
     
@@ -22,30 +25,37 @@ class ContainerPokemons extends React.Component {
     return urlImg
   }
 
-    render() {
-
-        return (
-                <div className="pokedex-container">
-                {
-                    this.props.pokemons.map( (pokemon, index) => {
-                      return (
-                        <Card 
-                          key={index + 1} 
-                          pokemon={pokemon}
-                          img={this.getImg(pokemon.name, this.props.detailsPokemon[index].id)}
-                          idPokemon={this.props.detailsPokemon[index].id} 
-                          detailsPokemon={this.props.detailsPokemon[index]}
-                          selectDetailPerPokemonFn={this.props.selectDetailPerPokemonFn}
-                          showDetailPerPokemon={this.props.showDetailPerPokemon}
-                          detailPerPokemon={this.props.detailPerPokemon}
-                          currentRegion={this.props.currentRegion}
-                        />
-                      )
-                    })
-                }
-                </div>
-        )
+  const getEndScrollFn = () => {
+    let currentScroll = valueScroll.current.scrollTop + valueScroll.current.offsetHeight
+    if(currentScroll === valueScroll.current.scrollHeight) {
+      alert('Final')
     }
+    // console.log(currentScroll)
+    // console.log(valueScroll.current.scrollHeight)
+
+  }
+
+  return (
+    <div ref={valueScroll} onScroll={getEndScrollFn} className="pokedex-container">
+    {
+        props.pokemons.map( (pokemon, index) => {
+          return (
+            <Card 
+              key={index + 1} 
+              pokemon={pokemon}
+              img={getImgFn(pokemon.name, props.detailsPokemon[index].id)}
+              idPokemon={props.detailsPokemon[index].id} 
+              detailsPokemon={props.detailsPokemon[index]}
+              selectDetailPerPokemonFn={props.selectDetailPerPokemonFn}
+              showDetailPerPokemon={props.showDetailPerPokemon}
+              detailPerPokemon={props.detailPerPokemon}
+              currentRegion={props.currentRegion}
+            />
+          )
+        })
+    }
+    </div>
+  )
 }
 
 export default ContainerPokemons

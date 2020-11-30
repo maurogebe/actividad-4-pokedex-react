@@ -17,16 +17,16 @@ class ContainerRegions extends React.Component {
                         {
                             this.props.sourceRegions.map( (region, index)=> {
                                 return (
-                                    <div onClick={() => this.props.selectPokemonsFn(region, index)} class="outline">
-                                        <div class="in">
-                                            <div class="in-top">
-                                                <div class="in-top--left"></div>
-                                                <div class="in-top--right"></div>
+                                    <div onClick={() => this.props.selectPokemonsFn(region, index)} className="outline">
+                                        <div className="in">
+                                            <div className="in-top">
+                                                <div className="in-top--left"></div>
+                                                <div className="in-top--right"></div>
                                             </div>
                                                 <h3>{region.name}</h3>
-                                            <div class="in-bottom">
-                                                <div class="in-bottom--left"></div>
-                                                <div class="in-bottom--right"></div>
+                                            <div className="in-bottom">
+                                                <div className="in-bottom--left"></div>
+                                                <div className="in-bottom--right"></div>
                                             </div>
                                         </div>
                                     </div>
