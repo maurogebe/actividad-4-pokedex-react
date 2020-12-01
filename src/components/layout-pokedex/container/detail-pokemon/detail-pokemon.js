@@ -1,4 +1,8 @@
 import React, {useEffect} from 'react';
+import {
+    Link,
+    useParams
+  } from "react-router-dom";
 
 // Import style
 import './detail-pokemon.css'
@@ -10,6 +14,8 @@ import { LinearProgress } from '@material-ui/core/'
 import { ArrowBackIos } from '@material-ui/icons/';
 
 function DetailPokemon(props) {
+
+    let { regionName } = useParams()
 
     useEffect(() => {
         props.detailPerPokemon[1].stats.map( (stats, index) => {
@@ -24,28 +30,28 @@ function DetailPokemon(props) {
 
     const getImgPerRegion = (name, id) => {
         if(props.currentRegion === 1) {
-            const urlImg = `./images/Gen_1/${name}.gif`
+            const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Gen_1/${name}.gif`
             return urlImg
         } else if(props.currentRegion === 2) {
-            const urlImg = `./images/Gen_2/${name}.gif`
+            const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Gen_2/${name}.gif`
             return urlImg
         } else if(props.currentRegion === 3) {
-            const urlImg = `./images/Gen_3/${name}.gif`
+            const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Gen_3/${name}.gif`
             return urlImg
         } else if(props.currentRegion === 4) {
-            const urlImg = `./images/Gen_4/${name}.gif`
+            const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Gen-4/${name}.gif`
             return urlImg
         } else if(props.currentRegion === 5) {
-            const urlImg = `./images/Shiny-Gen_5/${name}.gif`
+            const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Shiny-Gen-5/${name}.gif`
             return urlImg
         } else if(props.currentRegion === 6) {
-            const urlImg = `./images/Shiny-Gen_6/${name}.gif`
+            const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Shiny-Gen-6/${name}.gif`
             return urlImg
         } else if(props.currentRegion === 7) {
-            const urlImg = `./images/Shiny-Gen_7/${name}.gif`
+            const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Shiny-Gen-7/${name}.gif`
             return urlImg
         } else if(props.currentRegion === 8) {
-            const urlImg = `./images/Shiny-Gen_8/${name}.gif`
+            const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Shiny-Gen-8/${name}.gif`
             return urlImg
         }else {
             // if('https://projectpokemon.org/images/sprites-models/pgo-sprites/pokemon_icon_644_00.png' === false) {
@@ -60,9 +66,13 @@ function DetailPokemon(props) {
 
     return (
         <div className="detail-pokemon">
-            <div onClick={() => props.backPokemonDetailFn()}>
+            {/* <div onClick={() => props.backPokemonDetailFn()}> */}
+            <Link to={{
+                pathname: `/regions/${regionName}`
+            }}>
                 <ArrowBackIos className="icon-back-ios" fontSize="large" />
-            </div>
+            </Link>
+            {/* </div> */}
             <div className="card-details-pokemon">
                 <h1 className="detail-pokemon__title-pokemon">
                     #{props.detailPerPokemon[1].id} <span className="detail-pokemon__text-pokemon">{props.detailPerPokemon[0].name}</span>

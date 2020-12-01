@@ -1,4 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
+import {
+  useHistory
+} from "react-router-dom";
 
 // Import Components
 import LayoutPokedex from './layout-pokedex/layout-pokedex'
@@ -24,9 +27,10 @@ function Main() {
   let [sourceRegions, setRegions] = useState(regions)
   let [detailPerPokemon, setDetailPerPokemon] = useState([])
   let [currentRegion, setCurrentRegion] = useState(0)
+  const history = useHistory()
 
 
-  async function asyncForEach(array, callback) {
+  const asyncForEach = async(array, callback) => {
     for (let index = 0; index < array.length; index++) {
       await callback(array[index], index, array);
     }
@@ -63,6 +67,7 @@ function Main() {
       setShowDetailPerPokemon(false)
     } else {
       setTimeout(() => {
+        history.push("/regions")
         setShowDisplay(true)
         setShowRegions(true)
       }, 1000)
@@ -72,16 +77,16 @@ function Main() {
   }
 
   const selectPokemonsFn = async(value, index) => {
-    setStartCurrentPokemon(value.startPokemons)
-    setPokemonPerPage(value.limitPokemon)
+    // setStartCurrentPokemon(value.startPokemons)
+    // setPokemonPerPage(value.limitPokemon)
     let current = index + 1
-    const url = 'https://pokeapi.co/api/v2/pokemon'
-    let response = await fetch(`${url}?limit=${value.limitPokemon}&offset=${value.startPokemons}`);
-    let data = await response.json();
-    let results = data.results;
-    let detailsPokemon = await getDetail(results)
-    setPokemons(results)
-    setDetailsPokemons(detailsPokemon)
+    // const url = 'https://pokeapi.co/api/v2/pokemon'
+    // let response = await fetch(`${url}?limit=${value.limitPokemon}&offset=${value.startPokemons}`);
+    // let data = await response.json();
+    // let results = data.results;
+    // let detailsPokemon = await getDetail(results)
+    // setPokemons(results)
+    // setDetailsPokemons(detailsPokemon)
     setCurrentRegion(current)
     setShowPokemons(true)
     setShowRegions(false)
@@ -136,6 +141,7 @@ return (
       detailPerPokemon={detailPerPokemon}
       currentRegion={currentRegion}
       backPokemonDetailFn={backPokemonDetailFn}
+      getDetail={getDetail}
     />
   </div>
 )

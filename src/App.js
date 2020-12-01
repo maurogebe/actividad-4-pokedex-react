@@ -1,4 +1,9 @@
 import React from 'react';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+  } from "react-router-dom";
 
 // Import Components
 import Main from './components/main' 
@@ -12,9 +17,9 @@ export default class App extends React.Component {
     render() {
 
         return (
-            <div>
+            <Router>
               <Main />
-            </div>
+            </Router>
         )
     }
 }

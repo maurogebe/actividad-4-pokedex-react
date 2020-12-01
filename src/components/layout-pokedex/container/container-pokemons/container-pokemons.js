@@ -1,6 +1,12 @@
-import React, { useState, useRef } from 'react';
-import axios from 'axios';
+import React, { useState, useRef, useEffect } from 'react';
+import {
+   useParams, 
+   Link 
+  } from "react-router-dom";
 // import AWS from 'aws-sdk'
+
+// Import sources
+import { regions } from '../../../../sources'
 
 // Import Components
 import Card from './card/card';
@@ -8,9 +14,37 @@ import Card from './card/card';
 // Import style
 import './container-pokemons.css';
 
+// Import Icons
+import { ArrowBackIos } from '@material-ui/icons/';
+
+//  Import Material UI
+import { Skeleton } from '@material-ui/lab'
+
 function ContainerPokemons(props) {
 
+  // let [region, setRegion] = useState(regions)
+
+  let [pokemons, setPokemons] = useState([])
+  let [pokemonsDetails, setPokemonsDetails] = useState([])
+  let [regionsAll, setRegionsAll] = useState(regions)
   let valueScroll = useRef(0)
+  let { regionName } = useParams()
+
+  useEffect(() => {
+    const region = regionsAll.find( region => region.name.toLowerCase() === regionName)
+    const getPokemons = async() => {
+      const url = 'https://pokeapi.co/api/v2/pokemon'
+      let response = await fetch(`${url}?limit=20&offset=${region.startPokemons}`);
+      let data = await response.json();
+      let results = data.results;
+      let details = await props.getDetail(results)
+      setPokemons(results)
+      setPokemonsDetails(details)
+      console.log(details)
+    }
+    getPokemons()
+    // console.log(details)
+  }, [regionName])
 
   const getImgFn = (name, id) => {
 
@@ -36,25 +70,38 @@ function ContainerPokemons(props) {
   }
 
   return (
-    <div ref={valueScroll} onScroll={getEndScrollFn} className="pokedex-container">
-    {
-        props.pokemons.map( (pokemon, index) => {
-          return (
-            <Card 
-              key={index + 1} 
-              pokemon={pokemon}
-              img={getImgFn(pokemon.name, props.detailsPokemon[index].id)}
-              idPokemon={props.detailsPokemon[index].id} 
-              detailsPokemon={props.detailsPokemon[index]}
-              selectDetailPerPokemonFn={props.selectDetailPerPokemonFn}
-              showDetailPerPokemon={props.showDetailPerPokemon}
-              detailPerPokemon={props.detailPerPokemon}
-              currentRegion={props.currentRegion}
-            />
-          )
-        })
-    }
-    </div>
+    <>
+      <Link to={{
+          pathname: `/regions`
+      }}>
+          <ArrowBackIos className="icon-back-ios" fontSize="large" />
+      </Link>
+      <div ref={valueScroll} onScroll={getEndScrollFn} className="pokedex-container">
+      {
+          pokemons.map( (pokemon, index) => {
+            console.log(pokemonsDetails)
+            return (
+              pokemonsDetails.length != 0 ? (
+                <Card 
+                  key={index + 1} 
+                  pokemon={pokemon}
+                  img={getImgFn(pokemon.name, pokemonsDetails[index].id)}
+                  idPokemon={pokemonsDetails[index].id} 
+                  detailsPokemon={pokemonsDetails[index]}
+                  selectDetailPerPokemonFn={props.selectDetailPerPokemonFn}
+                  showDetailPerPokemon={props.showDetailPerPokemon}
+                  detailPerPokemon={props.detailPerPokemon}
+                  currentRegion={props.currentRegion}
+                />
+              ) : (
+                <Skeleton variant="rect" height={150}/>
+              )
+            )
+          })
+          
+      }
+      </div>
+    </>
   )
 }
 
