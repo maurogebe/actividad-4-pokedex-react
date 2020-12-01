@@ -12,7 +12,7 @@ function SideLeft(props) {
 
     return (
         <>
-            <div className={`left-side ${props.transitionPokedex ? 'left-show-pokemons' : ''}`}>
+            <div className={`left-side ${props.transitionPokedex ? 'left-show-pokemons' : ''} ${props.showShowDirectlyAccess ? (props.showDirectlyAccess ? 'show-directly-access-left' : 'left-side-static') : null}`}>
                 <div className="left-side__notches-top left-side__notches-top--position-absolute">
                     <div className="left-side__top-notch-outside">
                         <div className="left-side__top-notch-in"></div>
@@ -33,7 +33,7 @@ function SideLeft(props) {
                             <div className="half-left-pokeball__in">
                                 <div className="half-left-pokeball__in-top"></div>
                                 <div className="half-left-pokeball__in-bottom"></div>
-                                <div className="half-left-pokeball__button" onClick={() => props.showDisplayFn()}>
+                                <div className="half-left-pokeball__button" onClick={() => props.showDisplayFn(props.showDirectlyAccess)}>
                                     <div className="half-left-pokeball__button-top"></div>
                                     <div className="half-left-pokeball__button-bottom"></div>
                                 </div>

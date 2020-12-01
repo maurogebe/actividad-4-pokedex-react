@@ -15,6 +15,12 @@
     left: -340px;
     transition: all 1s;
   }
+  .left-side-static {
+    transition: none;
+  }
+  .show-directly-access-left {
+    left: -340px;
+  }
   /* Notch Top */
   .left-side__notches-top {
     width: 50%;

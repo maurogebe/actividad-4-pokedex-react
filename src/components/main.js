@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {
-  useHistory
+  useHistory,
+  useLocation
 } from "react-router-dom";
 
 // Import Components
@@ -17,8 +18,6 @@ function Main() {
   let [pokemons, setPokemons] = useState([])
   let [detailsPokemon, setDetailsPokemons] = useState([])
   let [currentPage, setCurrentPage] = useState(1)
-  let [pokemonPerPage, setPokemonPerPage] = useState(0)
-  let [startCurrentPokemon, setStartCurrentPokemon] = useState(0)
   let [showDisplay, setShowDisplay] = useState(false)
   let [showRegions, setShowRegions] = useState(false)  
   let [showPokemons, setShowPokemons] = useState(false)
@@ -27,7 +26,11 @@ function Main() {
   let [sourceRegions, setRegions] = useState(regions)
   let [detailPerPokemon, setDetailPerPokemon] = useState([])
   let [currentRegion, setCurrentRegion] = useState(0)
-  const history = useHistory()
+  let [showDirectlyAccess, setShowDirectlyAccess] = useState(true)
+  let [showShowDirectlyAccess, setShowShowDirectlyAccess] = useState(true)
+  const regionsHistory = useHistory()
+  const pokemonDetailHistory = useHistory()
+  const pokemonsHistory = useHistory()
 
 
   const asyncForEach = async(array, callback) => {
@@ -53,40 +56,35 @@ function Main() {
     })
   }
 
-  useEffect(async () => {
-    if(pokemons.length > 0){
-      let detallePokemones = await getDetail(pokemons);
-    }
-  }, [pokemons])
-
-  const showDisplayFn = () => {
+  const showDisplayFn = (value) => {
     if(showDisplay) {
       setShowDisplay(false)
-      setShowRegions(false)
-      setShowPokemons(false)
-      setShowDetailPerPokemon(false)
+      regionsHistory.push("/")
     } else {
-      setTimeout(() => {
-        history.push("/regions")
-        setShowDisplay(true)
-        setShowRegions(true)
-      }, 1000)
+      if(value) {
+          regionsHistory.push("/regions")
+          setShowDisplay(true)
+          setShowShowDirectlyAccess(false)
+          setShowDirectlyAccess(false)
+      } else {
+          setShowShowDirectlyAccess(false)
+          setTimeout(() => {
+            regionsHistory.push("/regions")
+            setShowDisplay(true)
+          }, 1000)
+      }
+      
     }
-    
     transitionPokedex ? setTransitionPokedex(false) : setTransitionPokedex(true)
   }
 
+  const directlyAccessPathFn = () => {
+    setShowDirectlyAccess(false)
+    setShowShowDirectlyAccess(true)
+  }
+
   const selectPokemonsFn = async(value, index) => {
-    // setStartCurrentPokemon(value.startPokemons)
-    // setPokemonPerPage(value.limitPokemon)
     let current = index + 1
-    // const url = 'https://pokeapi.co/api/v2/pokemon'
-    // let response = await fetch(`${url}?limit=${value.limitPokemon}&offset=${value.startPokemons}`);
-    // let data = await response.json();
-    // let results = data.results;
-    // let detailsPokemon = await getDetail(results)
-    // setPokemons(results)
-    // setDetailsPokemons(detailsPokemon)
     setCurrentRegion(current)
     setShowPokemons(true)
     setShowRegions(false)
@@ -102,7 +100,6 @@ function Main() {
     setDetailPerPokemon(detailPokemonCopy)
     setShowDetailPerPokemon(true)
     setShowPokemons(false)
-    // console.log(detailPokemonCopy)
   }
 
 
@@ -142,6 +139,9 @@ return (
       currentRegion={currentRegion}
       backPokemonDetailFn={backPokemonDetailFn}
       getDetail={getDetail}
+      showDirectlyAccess={showDirectlyAccess}
+      directlyAccessPathFn={directlyAccessPathFn}
+      showShowDirectlyAccess={showShowDirectlyAccess}
     />
   </div>
 )

@@ -6,7 +6,7 @@ import {
 // import AWS from 'aws-sdk'
 
 // Import sources
-import { regions } from '../../../../sources'
+import { regions } from '../../../sources'
 
 // Import Components
 import Card from './card/card';

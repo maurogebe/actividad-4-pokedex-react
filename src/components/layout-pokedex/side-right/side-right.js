@@ -10,7 +10,7 @@ class SideRight extends React.Component {
 
         return (
             <>
-                <div className={`right-side ${this.props.transitionPokedex ? 'right-show-pokemons' : ''}`}>
+                <div className={`right-side ${this.props.transitionPokedex ? 'right-show-pokemons' : ''} ${this.props.showShowDirectlyAccess ? (this.props.showDirectlyAccess ? 'show-directly-access-right' : 'right-side-static') : null}`}>
                     <div className="right-side__notches-top right-side__notches-top--position-absolute">
                         <div className="right-side__top-notch-outside">
                             <div className="right-side__top-notch-in"></div>
