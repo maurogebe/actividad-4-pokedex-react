@@ -18,15 +18,14 @@ function Card(props) {
 
         // const idPokemonImg = document.getElementById(`id-pokemon-img-${props.idPokemon}`)
         setTimeout(() => {
-            if(refImgPokemon.current.clientHeight < 30) {
-                // setImgPokemon(`https://www.pokencyclopedia.info/sprites/3ds/spr_3ds/3spr__${props.idPokemon}.png`) 
-                setImgPokemon(`https://www.pokencyclopedia.info/sprites/artworks/ken-sugimori/art__${props.idPokemon}.png`)
-                // console.log(idPokemonImg.clientHeight)
-                refImgPokemon.current.style.width = '75px'
-                refImgPokemon.current.style.bottom = '12%'
-            }
-            console.log(refImgPokemon.current.clientHeight)
-        }, 2000)
+                if(refImgPokemon.current.clientHeight < 30) {
+                    // setImgPokemon(`https://www.pokencyclopedia.info/sprites/3ds/spr_3ds/3spr__${props.idPokemon}.png`) 
+                    setImgPokemon(`https://www.pokencyclopedia.info/sprites/artworks/ken-sugimori/art__${props.idPokemon}.png`)
+                    // console.log(idPokemonImg.clientHeight)
+                    refImgPokemon.current.style.width = '75px'
+                    refImgPokemon.current.style.bottom = '12%'
+                }
+        }, 1000)
     }, [])
 
     const iterarTypes = (value) => {
