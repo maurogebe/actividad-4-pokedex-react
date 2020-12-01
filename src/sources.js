@@ -22,7 +22,7 @@ const regions = [
     },
     {
         name: 'Sinnoh',
-        startPokemons: 387,
+        startPokemons: 386,
         limitPokemon: 106,
         generacion: 'Cuarta',
         img: '',

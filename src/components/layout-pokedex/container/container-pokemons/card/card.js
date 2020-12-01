@@ -15,17 +15,44 @@ function Card(props) {
     let { regionName } = useParams()
 
     useEffect(() => {
+        if(props.currentRegion === 5) {
+            const urlImg = `https://www.pokencyclopedia.info/sprites/artworks/ken-sugimori/art__${props.idPokemon}.png`
+            setImgPokemon(urlImg)
+            refImgPokemon.current.style.bottom = '5%'
+            refImgPokemon.current.style.height = '110px'
+        } else if(props.currentRegion === 6) {
+            const urlImg = `https://www.pokencyclopedia.info/sprites/artworks/ken-sugimori/art__${props.idPokemon}.png`
+            setImgPokemon(urlImg)
+            refImgPokemon.current.style.bottom = '5%'
+            refImgPokemon.current.style.height = '110px'
+        } else if(props.currentRegion === 7) {
+            const urlImg = `https://www.pokencyclopedia.info/sprites/artworks/ken-sugimori/art__${props.idPokemon}.png`
+            setImgPokemon(urlImg)
+            refImgPokemon.current.style.bottom = '5%'
+            refImgPokemon.current.style.height = '110px'
+        } else if(props.currentRegion === 8) {
+            const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Shiny-Gen-8/${props.idPokemon}.gif`
+            setImgPokemon(urlImg)
+            refImgPokemon.current.style.bottom = '0%'
+            refImgPokemon.current.style.height = '110px'
+        }
+
+        // setTimeout(() => {
+
+
+        //     if(refImgPokemon.current.clientHeight < 30) {
+        //         // setImgPokemon(`https://www.pokencyclopedia.info/sprites/3ds/spr_3ds/3spr__${props.idPokemon}.png`) 
+        //         setImgPokemon(`https://www.pokencyclopedia.info/sprites/artworks/ken-sugimori/art__${props.idPokemon}.png`)
+        //         // console.log(idPokemonImg.clientHeight)
+        //         // refImgPokemon.current.style.width = '75px'
+        //         // refImgPokemon.current.style.bottom = '12%'
+                
+        //         alert('hoal')
+        //     }
+        // }, 1000)
 
         // const idPokemonImg = document.getElementById(`id-pokemon-img-${props.idPokemon}`)
-        setTimeout(() => {
-                if(refImgPokemon.current.clientHeight < 30) {
-                    // setImgPokemon(`https://www.pokencyclopedia.info/sprites/3ds/spr_3ds/3spr__${props.idPokemon}.png`) 
-                    setImgPokemon(`https://www.pokencyclopedia.info/sprites/artworks/ken-sugimori/art__${props.idPokemon}.png`)
-                    // console.log(idPokemonImg.clientHeight)
-                    refImgPokemon.current.style.width = '75px'
-                    refImgPokemon.current.style.bottom = '12%'
-                }
-        }, 1000)
+        
     }, [])
 
     const iterarTypes = (value) => {

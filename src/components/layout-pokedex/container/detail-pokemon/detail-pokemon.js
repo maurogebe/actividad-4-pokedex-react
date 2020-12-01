@@ -51,7 +51,7 @@ function DetailPokemon(props) {
             const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Shiny-Gen-7/${name}.gif`
             return urlImg
         } else if(props.currentRegion === 8) {
-            const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Shiny-Gen-8/${name}.gif`
+            const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Shiny-Gen-8/${id}.gif`
             return urlImg
         }else {
             // if('https://projectpokemon.org/images/sprites-models/pgo-sprites/pokemon_icon_644_00.png' === false) {
