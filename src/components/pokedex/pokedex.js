@@ -16,9 +16,9 @@ import ContainerRegions from './container-regions/container-regions'
 import DetailPokemon from './detail-pokemon/detail-pokemon'
 
 // Import Style
-import './layout-pokedex.css'
+import './pokedex.css'
 
-function LayoutPokedex(props) {
+function Pokedex(props) {
 
     const location = useLocation()
     let { regionName, pokemonName } = useParams()
@@ -94,4 +94,4 @@ function LayoutPokedex(props) {
 
 }
 
-export default LayoutPokedex
+export default Pokedex

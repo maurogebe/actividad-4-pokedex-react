@@ -5,7 +5,7 @@ import {
 } from "react-router-dom";
 
 // Import Components
-import LayoutPokedex from './layout-pokedex/layout-pokedex'
+import Pokedex from './pokedex/pokedex'
 
 // Import Sources
 import { regions } from '../sources'
