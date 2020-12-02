@@ -72,7 +72,7 @@ function Card(props) {
         <>
             {
                 <Link to={{
-                    pathname: `/regions/${regionName}/${props.pokemon.name}`
+                    pathname: `/pokedex/regions/${regionName}/${props.pokemon.name}`
                 }}>
                     <div className="card-container">
                         <h3 className="title-pokemon">

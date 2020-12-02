@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import {
+  Switch,
+  Route, 
   useHistory,
-  useLocation
+  useLocation,
+  useParams
 } from "react-router-dom";
 
 // Import Components
 import Pokedex from './pokedex/pokedex'
+import LogIn from './log-in/log-in'
+import PrivateRoute from './private-route/private-route'
 
 // Import Sources
 import { regions } from '../sources'
@@ -28,9 +33,19 @@ function Main() {
   let [currentRegion, setCurrentRegion] = useState(0)
   let [showDirectlyAccess, setShowDirectlyAccess] = useState(true)
   let [showShowDirectlyAccess, setShowShowDirectlyAccess] = useState(true)
+  let [user, setUser] = useState(false)
   const regionsHistory = useHistory()
   const pokemonDetailHistory = useHistory()
   const pokemonsHistory = useHistory()
+  const { regionName } = useParams()
+  // const location = useLocation()
+
+
+  // useEffect(() => {
+  //   const region = sourceRegions.findIndex((r) => regionName.toUpperCase() === r.name.toUpperCase()) 
+  //   setCurrentRegion(region + 1)
+  //   console.log(regionName)
+  // }, [])
 
 
   const asyncForEach = async(array, callback) => {
@@ -59,17 +74,17 @@ function Main() {
   const showDisplayFn = (value) => {
     if(showDisplay) {
       setShowDisplay(false)
-      regionsHistory.push("/")
+      regionsHistory.push("/pokedex")
     } else {
       if(value) {
-          regionsHistory.push("/regions")
+          regionsHistory.push("/pokedex/regions")
           setShowDisplay(true)
           setShowShowDirectlyAccess(false)
           setShowDirectlyAccess(false)
       } else {
           setShowShowDirectlyAccess(false)
           setTimeout(() => {
-            regionsHistory.push("/regions")
+            regionsHistory.push("/pokedex/regions")
             setShowDisplay(true)
           }, 1000)
       }
@@ -84,10 +99,10 @@ function Main() {
   }
 
   const selectPokemonsFn = async(value, index) => {
-    let current = index + 1
-    setCurrentRegion(current)
-    setShowPokemons(true)
-    setShowRegions(false)
+    // let current = index + 1
+    // setCurrentRegion(current)
+    // setShowPokemons(true)
+    // setShowRegions(false)
     // console.log(value)
   }
 
@@ -121,28 +136,38 @@ const backPokemonDetailFn = () => {
 
 return (
   <div className="container-style-pokedex">
-    <LayoutPokedex 
-      pokemons={pokemons}
-      currentPage={currentPage}
-      imgPokemonsFn={imgPokemons}
-      detailsPokemon={detailsPokemon}
-      showDisplay={showDisplay}
-      showDisplayFn={showDisplayFn}
-      transitionPokedex={transitionPokedex}
-      sourceRegions={sourceRegions}
-      showRegions={showRegions}
-      showPokemons={showPokemons}
-      showDetailPerPokemon={showDetailPerPokemon}
-      selectPokemonsFn={selectPokemonsFn}
-      selectDetailPerPokemonFn={selectDetailPerPokemonFn}
-      detailPerPokemon={detailPerPokemon}
-      currentRegion={currentRegion}
-      backPokemonDetailFn={backPokemonDetailFn}
-      getDetail={getDetail}
-      showDirectlyAccess={showDirectlyAccess}
-      directlyAccessPathFn={directlyAccessPathFn}
-      showShowDirectlyAccess={showShowDirectlyAccess}
-    />
+    <Switch>
+      <Route path="/log-in">
+        <LogIn
+          setUserFn={setUser}
+        />
+      </Route>
+      
+      <PrivateRoute path="/pokedex" user={user} >
+        <Pokedex 
+          pokemons={pokemons}
+          currentPage={currentPage}
+          imgPokemonsFn={imgPokemons}
+          detailsPokemon={detailsPokemon}
+          showDisplay={showDisplay}
+          showDisplayFn={showDisplayFn}
+          transitionPokedex={transitionPokedex}
+          sourceRegions={sourceRegions}
+          showRegions={showRegions}
+          showPokemons={showPokemons}
+          showDetailPerPokemon={showDetailPerPokemon}
+          selectPokemonsFn={selectPokemonsFn}
+          selectDetailPerPokemonFn={selectDetailPerPokemonFn}
+          detailPerPokemon={detailPerPokemon}
+          currentRegion={currentRegion}
+          backPokemonDetailFn={backPokemonDetailFn}
+          getDetail={getDetail}
+          showDirectlyAccess={showDirectlyAccess}
+          directlyAccessPathFn={directlyAccessPathFn}
+          showShowDirectlyAccess={showShowDirectlyAccess}
+        />
+      </PrivateRoute>
+    </Switch>
   </div>
 )
 

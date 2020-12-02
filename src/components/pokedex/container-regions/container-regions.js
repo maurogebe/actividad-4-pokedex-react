@@ -23,7 +23,7 @@ class ContainerRegions extends React.Component {
                                 return (
                                     <>
                                         <Link to={{
-                                                pathname: `/regions/${region.name.toLowerCase()}`
+                                                pathname: `/pokedex/regions/${region.name.toLowerCase()}`
                                             }}>
                                             <div onClick={() => this.props.selectPokemonsFn(region, index)} className="outline">
                                                 <div className="in">

@@ -17,11 +17,11 @@
     cursor: pointer;
 }
 .detail-pokemon__img-pokemon {
-  width: 250px;
+  width: 300px;
   height: 350px;
     margin-top: 10px;
     position: absolute;
-    left: 7%;
+    left: 5%;
     /* top: 0px; */
     bottom: 15%;
 }

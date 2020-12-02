@@ -27,6 +27,7 @@ function ContainerPokemons(props) {
   let [pokemons, setPokemons] = useState([])
   let [pokemonsDetails, setPokemonsDetails] = useState([])
   let [regionsAll, setRegionsAll] = useState(regions)
+  let [showCardsPokemons, setShowCardsPokemons] = useState(false)
   let valueScroll = useRef(0)
   let { regionName } = useParams()
 
@@ -44,7 +45,14 @@ function ContainerPokemons(props) {
     }
     getPokemons()
     // console.log(details)
-  }, [regionName])
+  }, [])
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setShowCardsPokemons(true)
+  //   },1000)
+  //   // setShowCardsPokemons(true)
+  // }, [])
 
   const getImgFn = (name, id) => {
 
@@ -72,18 +80,17 @@ function ContainerPokemons(props) {
   return (
     <>
       <Link to={{
-          pathname: `/regions`
+          pathname: `/pokedex/regions`
       }}>
           <ArrowBackIos className="icon-back-ios" fontSize="large" />
       </Link>
       <div ref={valueScroll} onScroll={getEndScrollFn} className="pokedex-container">
       {
           pokemons.map( (pokemon, index) => {
-            console.log(pokemonsDetails)
             return (
-              pokemonsDetails.length != 0 ? (
+              pokemonsDetails.length === 0 ? (
                 <Card 
-                  key={index + 1} 
+                  key={index + 1}
                   pokemon={pokemon}
                   img={getImgFn(pokemon.name, pokemonsDetails[index].id)}
                   idPokemon={pokemonsDetails[index].id} 

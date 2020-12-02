@@ -1,0 +1,51 @@
+.contain-log-in {
+    width: 40%;
+    height: 70vh;
+    padding: 20px;
+    margin: 0 auto;
+    background-color: rgba(0, 190, 255, 50%);
+    border-radius: 20px;
+    margin-top: 5vh;
+  }
+  .title-log {
+    text-align: center;
+  }
+  .form-log {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 5px;
+  }
+  .input-log {
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: white;
+    padding: 8px 10%;
+    outline: none;
+  }
+  .text-log {
+    text-align: center;
+    margin: 5px 0;
+  }
+  .button-log {
+    border-radius: 20px;
+    margin-top: 10px;
+    padding: 8px 0;
+    outline: none;
+  }
+  .button-google {
+    width: 50%;
+    height: 40px;
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    position: relative;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+  .icon-google {
+    position: absolute;
+    left: 4%;
+  }

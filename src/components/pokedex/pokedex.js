@@ -24,9 +24,10 @@ function Pokedex(props) {
     let { regionName, pokemonName } = useParams()
 
     useEffect(() => {
-        if(location.pathname === '/') {
+        if(location.pathname === '/pokedex') {
             props.directlyAccessPathFn()
         }
+        
     }, [])
 
     return (
@@ -40,7 +41,7 @@ function Pokedex(props) {
                         showShowDirectlyAccess={props.showShowDirectlyAccess}
                     />
 
-                        <Route path="/regions" exact>
+                        <Route path="/pokedex/regions" exact>
                             <div className="container-pokemon">
                                 <ContainerRegions 
                                     key='regions'
@@ -50,7 +51,7 @@ function Pokedex(props) {
                             </div>
                         </Route>
 
-                        <Route path="/regions/:regionName" exact>
+                        <Route path="/pokedex/regions/:regionName" exact>
                             <div className="container-pokemon">
                                 <ContainerPokemons
                                     // pokemons={props.pokemons}
@@ -66,7 +67,7 @@ function Pokedex(props) {
                             </div>
                         </Route>
 
-                        <Route path="/regions/:regionName/:pokemonName">
+                        <Route path="/pokedex/regions/:regionName/:pokemonName">
                             {/* {
                                 props.
                             } */}
