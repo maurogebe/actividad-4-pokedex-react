@@ -68,6 +68,8 @@ function Card(props) {
         })
     }
 
+    // <img src="picture1.gif" onerror="this.onerror=null;this.src='missing.gif';"/>
+
     return(
         <>
             {

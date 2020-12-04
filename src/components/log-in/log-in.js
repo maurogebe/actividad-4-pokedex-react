@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import firebase from '../../firebase/config'
 import {
+    Link,
     useHistory,
   } from "react-router-dom";
 
@@ -14,8 +15,26 @@ import { faGoogle } from '@fortawesome/free-brands-svg-icons'
 
 function LogIn(props) {
 
-    const googleProvider = new firebase.auth.GoogleAuthProvider
+    let email = useRef()
+    let password = useRef()
+    const googleProvider = new firebase.auth.GoogleAuthProvider()
     const historyPokedex = useHistory()
+
+    useEffect(() => {
+        firebase.auth().onAuthStateChanged(user => {
+            console.log(user)
+        });
+    }, [])
+
+    const cerrarSesion = () => {
+        firebase.auth().signOut().then(function() {
+            alert('Sesion Cerrada')
+            // Sign-out successful.
+          }).catch(function(error) {
+            // An error happened.
+          });
+          
+    }
 
     const showGooglePopup = async(event) => {
         event.preventDefault()
@@ -27,26 +46,42 @@ function LogIn(props) {
         } catch (error) {
             console.log("Error en la autenticacion", error);
         }
+
+    }
+
+    const showSignInUserWithEmail = async(event) => {
+        event.preventDefault()
+        try {
+            let result = await firebase.auth().signInWithEmailAndPassword(email.current.value, password.current.value)
+            console.log("Autenticado satisfactoriamente", result.user);
+            // props.setUserFn(result.user)
+            historyPokedex.push('/pokedex')
+        } catch (error) {
+            alert('')
+            console.log("Error en la autenticacion", error);
+        };
     }
 
     return(
         <>
             <div className="contain-log-in">
                 <h2 className="title-log">Log In</h2>
-                <form className="form-log">
-                    <label for="email"></label>
-                    <input className="input-log" id="email" type="email" />
-                    <label for="password"></label>
-                    <input className="input-log" id="password" type="password" />
+                <form onSubmit={showSignInUserWithEmail} className="form-log">
+                    <label className="label-log" for="email">Enter your email</label>
+                    <input ref={email} className="input-log" id="email" type="email" required />
+                    <label className="label-log" for="password">Enter your password</label>
+                    <input ref={password} className="input-log" id="password" type="password" minLength="8" required />
                     <input className="button-log" type="submit" />
                     <h4 className="text-log">OR</h4>
-                    <button onClick={showGooglePopup} className="button-google">
+                    <button onClick={showGooglePopup} className="button-google-log">
                         <FontAwesomeIcon className="icon-google" icon={faGoogle} size="lg" /> Continue whit Google</button>
-                    <p className="text-log">
-                    You are not a member? <a href="">Register</a>
+                    <p className="text-log text-log--position">
+                    You are not a member? <Link to="/sign-in" className="link-log-to-sign">Sign In</Link>
                     </p>
                 </form>
             </div>
+
+            <button onClick={cerrarSesion}>Cerrar Sesion</button>
         </>
     )
 }

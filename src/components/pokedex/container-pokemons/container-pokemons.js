@@ -47,12 +47,16 @@ function ContainerPokemons(props) {
     // console.log(details)
   }, [])
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setShowCardsPokemons(true)
-  //   },1000)
-  //   // setShowCardsPokemons(true)
-  // }, [])
+  useEffect(() => {
+    // setTimeout(() => {
+    //   setShowCardsPokemons(true)
+    // },1000)
+    // console.log(pokemonsDetails)
+    // console.log(pokemonsDetails.length)
+    if(pokemonsDetails.length !=0) {
+      setShowCardsPokemons(true)
+    }
+  }, [pokemonsDetails])
 
   const getImgFn = (name, id) => {
 
@@ -88,7 +92,7 @@ function ContainerPokemons(props) {
       {
           pokemons.map( (pokemon, index) => {
             return (
-              pokemonsDetails.length === 0 ? (
+              showCardsPokemons ? (
                 <Card 
                   key={index + 1}
                   pokemon={pokemon}

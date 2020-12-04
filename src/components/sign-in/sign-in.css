@@ -1,4 +1,4 @@
-.contain-log-in {
+.contain-sign-in {
     width: 40%;
     height: 70vh;
     padding: 20px;
@@ -9,15 +9,15 @@
     position: relative;
     color: #00445d;
   }
-  .title-log {
+  .title-sign {
     text-align: center;
   }
-  .form-log {
+  .form-sign {
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 5px;
   }
-  .input-log {
+  .input-sign {
     width: 70%;
     height: 30px;
     padding: 0 15px;
@@ -29,21 +29,21 @@
     margin: 0 auto;
     font-size: 14px;
   }
-  .label-log {
-    text-align: center;
+  .label-sign {
+      text-align: center;
   }
-  .text-log {
+  .text-sign {
     text-align: center;
     margin: 5px 0;
   }
-  .text-log--position {
+  .text-sign--position {
     position: absolute;
     bottom: 0;
     text-align: center;
     width: 100%;
     left: 0;
   }
-  .button-log {
+  .button-sign {
     width: 25%;
     border-radius: 20px;
     margin: 0 auto;
@@ -55,7 +55,7 @@
     background: rgba(24, 129, 164, 1);
     color: #37c9ff;
   }
-  .button-google-log {
+  .button-google-sign {
     width: 50%;
     height: 40px;
     display: flex;
@@ -76,6 +76,6 @@
     position: absolute;
     left: 4%;
   }
-  .link-log-to-sign {
-    color: #00445d;
+  .link-sign-to-log {
+      color: #00445d;
   }

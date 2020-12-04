@@ -6,10 +6,12 @@ import {
   useLocation,
   useParams
 } from "react-router-dom";
+import firebase from '../firebase/config'
 
 // Import Components
 import Pokedex from './pokedex/pokedex'
 import LogIn from './log-in/log-in'
+import SignIn from './sign-in/sign-in'
 import PrivateRoute from './private-route/private-route'
 
 // Import Sources
@@ -42,9 +44,13 @@ function Main() {
 
 
   // useEffect(() => {
-  //   const region = sourceRegions.findIndex((r) => regionName.toUpperCase() === r.name.toUpperCase()) 
-  //   setCurrentRegion(region + 1)
-  //   console.log(regionName)
+  //   const authUser = async() => {
+  //     const userState = await firebase.auth().currentUser
+  //     return setUser(userState)
+  //   }
+    
+  //   authUser()
+  //   console.log('gof')
   // }, [])
 
 
@@ -139,6 +145,12 @@ return (
     <Switch>
       <Route path="/log-in">
         <LogIn
+          setUserFn={setUser}
+        />
+      </Route>
+
+      <Route path="/sign-in">
+        <SignIn 
           setUserFn={setUser}
         />
       </Route>
