@@ -14,6 +14,8 @@ function Card(props) {
     let refImgPokemon = useRef()
     let { regionName } = useParams()
 
+
+    // Iterando en los tipos de cada pokemon para que se muestre uno o mas tipos a los que pertenece
     const iterarTypes = (value) => {
         return value.types.map( types => {
             let nameType = types.type.name;
@@ -63,8 +65,7 @@ function Card(props) {
                             ) : null
                             
                         }
-                        
-                            <img ref={refImgPokemon} onClick={() => props.selectDetailPerPokemonFn(props.pokemon.name, props.detailsPokemon, imgPokemon)} onError={changeImgError} id={`id-pokemon-img-${props.idPokemon}`} className="img-pokemon" src={imgPokemon} alt={props.pokemon.name} />
+                            <img ref={refImgPokemon} onError={changeImgError} id={`id-pokemon-img-${props.idPokemon}`} className="img-pokemon" src={imgPokemon} alt={props.pokemon.name} />
                         
                     </div>
                 </Link>

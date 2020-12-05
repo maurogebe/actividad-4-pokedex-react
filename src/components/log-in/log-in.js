@@ -20,22 +20,17 @@ function LogIn(props) {
     const googleProvider = new firebase.auth.GoogleAuthProvider()
     const historyPokedex = useHistory()
 
-    useEffect(() => {
-        firebase.auth().onAuthStateChanged(user => {
-            console.log(user)
-        });
-    }, [])
-
+    // Cerrar sesion
     const cerrarSesion = () => {
         firebase.auth().signOut().then(function() {
             alert('Sesion Cerrada')
-            // Sign-out successful.
           }).catch(function(error) {
-            // An error happened.
+
           });
           
     }
 
+    // Iniciando sesion con google
     const showGooglePopup = async(event) => {
         event.preventDefault()
         try {
@@ -49,12 +44,12 @@ function LogIn(props) {
 
     }
 
+    // Iniciando Sesion con correo y contrasena
     const showSignInUserWithEmail = async(event) => {
         event.preventDefault()
         try {
             let result = await firebase.auth().signInWithEmailAndPassword(email.current.value, password.current.value)
             console.log("Autenticado satisfactoriamente", result.user);
-            // props.setUserFn(result.user)
             historyPokedex.push('/pokedex')
         } catch (error) {
             alert('')

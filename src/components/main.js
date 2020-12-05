@@ -23,16 +23,11 @@ import './main.css';
 function Main() {
 
   let [pokemons, setPokemons] = useState([])
-  let [detailsPokemon, setDetailsPokemons] = useState([])
-  let [currentPage, setCurrentPage] = useState(1)
   let [showDisplay, setShowDisplay] = useState(false)
   let [showRegions, setShowRegions] = useState(false)  
   let [showPokemons, setShowPokemons] = useState(false)
-  let [showDetailPerPokemon, setShowDetailPerPokemon] = useState(false)
   let [transitionPokedex, setTransitionPokedex] = useState(false)
   let [sourceRegions, setRegions] = useState(regions)
-  let [detailPerPokemon, setDetailPerPokemon] = useState([])
-  let [currentRegion, setCurrentRegion] = useState(0)
   let [showDirectlyAccess, setShowDirectlyAccess] = useState(true)
   let [showShowDirectlyAccess, setShowShowDirectlyAccess] = useState(true)
   let [user, setUser] = useState(false)
@@ -40,20 +35,8 @@ function Main() {
   const pokemonDetailHistory = useHistory()
   const pokemonsHistory = useHistory()
   const { regionName } = useParams()
-  // const location = useLocation()
 
-
-  // useEffect(() => {
-  //   const authUser = async() => {
-  //     const userState = await firebase.auth().currentUser
-  //     return setUser(userState)
-  //   }
-    
-  //   authUser()
-  //   console.log('gof')
-  // }, [])
-
-
+  // For para acceder a los detalles de cada pokemon para evitar la asincronia ya que el forEach no funciona con async await
   const asyncForEach = async(array, callback) => {
     for (let index = 0; index < array.length; index++) {
       await callback(array[index], index, array);
@@ -104,26 +87,6 @@ function Main() {
     setShowShowDirectlyAccess(true)
   }
 
-  const selectPokemonsFn = async(value, index) => {
-    // let current = index + 1
-    // setCurrentRegion(current)
-    // setShowPokemons(true)
-    // setShowRegions(false)
-    // console.log(value)
-  }
-
-  const selectDetailPerPokemonFn = (pokemon, detail, img) => {
-    const capitalize = (word) => {
-      return word[0].toUpperCase() + word.slice(1);
-    }
-    let detailPokemonCopy = []
-    detailPokemonCopy.push({name: capitalize(pokemon)}, detail, {urlImg: img})
-    setDetailPerPokemon(detailPokemonCopy)
-    setShowDetailPerPokemon(true)
-    setShowPokemons(false)
-  }
-
-
 const imgPokemons = (value) => {
   if(value.toString().length === 1) {
     return `00${value}`
@@ -134,10 +97,10 @@ const imgPokemons = (value) => {
   }
 }
 
-const backPokemonDetailFn = () => {
-  setShowDetailPerPokemon(false)
-  setShowPokemons(true)
-}
+// const backPokemonDetailFn = () => {
+//   setShowDetailPerPokemon(false)
+//   setShowPokemons(true)
+// }
 
 
 return (
@@ -158,21 +121,13 @@ return (
       <PrivateRoute path="/pokedex" user={user} >
         <Pokedex 
           pokemons={pokemons}
-          currentPage={currentPage}
           imgPokemonsFn={imgPokemons}
-          detailsPokemon={detailsPokemon}
           showDisplay={showDisplay}
           showDisplayFn={showDisplayFn}
           transitionPokedex={transitionPokedex}
           sourceRegions={sourceRegions}
           showRegions={showRegions}
           showPokemons={showPokemons}
-          showDetailPerPokemon={showDetailPerPokemon}
-          selectPokemonsFn={selectPokemonsFn}
-          selectDetailPerPokemonFn={selectDetailPerPokemonFn}
-          detailPerPokemon={detailPerPokemon}
-          currentRegion={currentRegion}
-          backPokemonDetailFn={backPokemonDetailFn}
           getDetail={getDetail}
           showDirectlyAccess={showDirectlyAccess}
           directlyAccessPathFn={directlyAccessPathFn}

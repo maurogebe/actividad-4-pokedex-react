@@ -36,6 +36,8 @@ function ContainerPokemons(props) {
   let valueScroll = useRef(0)
   let { regionName } = useParams()
 
+
+  // Hacer la peticion a la API cada vez que entren por la url o escogiendo la region 
   useEffect(() => {
     const region = regionsAll.find( region => region.name.toLowerCase() === regionName)
     setCurrentRegion(region)
@@ -61,6 +63,8 @@ function ContainerPokemons(props) {
     // console.log(details)
   }, [pokemonPerPage])
 
+
+  // Cada que pokemonsDetails cambie de valor debe activar de nuevo la vista de los pokemones para que muestre la lista actualizada despues de hacer el scroll infinito
   useEffect(() => {
     if(pokemonsDetails.length > pokemonPerPage) {
       setShowCardsPokemons(true)
@@ -68,6 +72,8 @@ function ContainerPokemons(props) {
     }
   }, [pokemonsDetails])
 
+
+  // url de imagen para no colocar todo el url en el src
   const getImgFn = (id) => {
 
     const urlImg = `https://projectpokemon.org/images/sprites-models/pgo-sprites/pokemon_icon_${props.imgPokemonsFn(id)}_00.png`
@@ -75,6 +81,8 @@ function ContainerPokemons(props) {
     return urlImg
   }
 
+
+  // Creando infinity scroll, se identifica cuando esta al final del scroll y se pone un condicional para que espere que haga la llamada a la API para que no haga mas llamadas hasta que no termine la que se pidio
   const getEndScrollFn = () => {
     if(scrollFinish) {
       if(scrollActive) {
@@ -113,21 +121,13 @@ function ContainerPokemons(props) {
           pokemons.map( (pokemon, index) => {
             return (
               showCardsPokemons ? (
-                // pokemonPerPage <= index ? (
-                  <Card 
-                    key={index + 1}
-                    pokemon={pokemon}
-                    img={getImgFn(pokemonsDetails[index].id)}
-                    idPokemon={pokemonsDetails[index].id} 
-                    detailsPokemon={pokemonsDetails[index]}
-                    selectDetailPerPokemonFn={props.selectDetailPerPokemonFn}
-                    showDetailPerPokemon={props.showDetailPerPokemon}
-                    detailPerPokemon={props.detailPerPokemon}
-                    // currentRegion={props.currentRegion}
-                  />
-                // ) : (
-                //   <Skeleton variant="rect" height={150}/>
-                // )
+                <Card 
+                  key={index + 1}
+                  pokemon={pokemon}
+                  img={getImgFn(pokemonsDetails[index].id)}
+                  idPokemon={pokemonsDetails[index].id} 
+                  detailsPokemon={pokemonsDetails[index]}
+                />
               ) : (
                 <Skeleton variant="rect" height={150}/>
               )

@@ -4,8 +4,6 @@ import {
     useParams
   } from "react-router-dom";
 
-import { Skeleton } from '@material-ui/lab'
-
 // Import Sources
 import { regions } from '../../../sources'
 
@@ -23,6 +21,7 @@ function DetailPokemon(props) {
     let [showPokemonDetail, setShowPokemonDetail] = useState(false)
     let { regionName, pokemonName } = useParams()
 
+    // Haciendo la peticion para acceder a los detalles del pokemon cuando se ingrese por el link en la lista o por el url directamente
     useEffect(async() => {
         const url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}/`
         let response = await fetch(url);
@@ -33,6 +32,7 @@ function DetailPokemon(props) {
         setCurrentRegion(region + 1)
     }, [])
 
+    // Cuando el valor de pokemonDetail va a agregar los stats
     useEffect(() => {
         pokemonDetail.stats.map( (stats, index) => {
             const getId = document.getElementById(`bar-stat-${index}`)
@@ -45,10 +45,13 @@ function DetailPokemon(props) {
         setShowPokemonDetail(true)
     }, [pokemonDetail])
 
+    // Metodo para devolver la primera una palabra sin cambiar su valor
     const firstLetterMayus = (string) => {
         return string.charAt(0).toUpperCase() + string.slice(1)
     }
 
+
+    // Accediendo a gif dependiendo de la region
     const getImgPerRegion = (name, id) => {
         if(currentRegion === 1) {
             const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Gen_1/${firstLetterMayus(name)}.gif`
@@ -75,27 +78,17 @@ function DetailPokemon(props) {
             const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Shiny-Gen-8/${id}.gif`
             return urlImg
         }else {
-            // if('https://projectpokemon.org/images/sprites-models/pgo-sprites/pokemon_icon_644_00.png' === false) {
-            //     alert('hola')
-                
-            // }
-            // const urlImg = `https://www.pokencyclopedia.info/sprites/artworks/ken-sugimori/art__${id}.png`
-            // return urlImg
-        }
 
-        console.log(currentRegion)
-        
+        }
     }
 
     return (
         <div className="detail-pokemon">
-            {/* <div onClick={() => props.backPokemonDetailFn()}> */}
             <Link to={{
                 pathname: `/pokedex/regions/${regionName}`
             }}>
                 <ArrowBackIos className="icon-back-ios" fontSize="large" />
             </Link>
-            {/* </div> */}
             <div className="card-details-pokemon">
                 <h1 className="detail-pokemon__title-pokemon">
                     #{pokemonDetail.id} <span className="detail-pokemon__text-pokemon">{pokemonName}</span>
