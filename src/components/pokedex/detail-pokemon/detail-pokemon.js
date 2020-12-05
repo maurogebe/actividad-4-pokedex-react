@@ -4,6 +4,8 @@ import {
     useParams
   } from "react-router-dom";
 
+import { Skeleton } from '@material-ui/lab'
+
 // Import Sources
 import { regions } from '../../../sources'
 
@@ -18,6 +20,7 @@ function DetailPokemon(props) {
     let [sourceRegions, setSourceRegions] = useState(regions)
     let [currentRegion, setCurrentRegion] = useState(0)
     let [pokemonDetail, setPokemonDetail] = useState( { types: [], stats: [] } )
+    let [showPokemonDetail, setShowPokemonDetail] = useState(false)
     let { regionName, pokemonName } = useParams()
 
     useEffect(async() => {
@@ -39,6 +42,7 @@ function DetailPokemon(props) {
             getId.style.left = `${getCenterPerStat}px`
 
         })
+        setShowPokemonDetail(true)
     }, [pokemonDetail])
 
     const firstLetterMayus = (string) => {
@@ -119,7 +123,7 @@ function DetailPokemon(props) {
                             )
                         })
                     }
-                </div>
+                </div>                
             </div>
 
             <img className="detail-pokemon__img-pokemon" src={getImgPerRegion(pokemonName, pokemonDetail.id)} alt={pokemonName} />

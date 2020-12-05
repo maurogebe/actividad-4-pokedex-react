@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import {
     Link,
     useParams
@@ -14,47 +14,6 @@ function Card(props) {
     let refImgPokemon = useRef()
     let { regionName } = useParams()
 
-    useEffect(() => {
-        if(props.currentRegion === 5) {
-            const urlImg = `https://www.pokencyclopedia.info/sprites/artworks/ken-sugimori/art__${props.idPokemon}.png`
-            setImgPokemon(urlImg)
-            refImgPokemon.current.style.bottom = '5%'
-            refImgPokemon.current.style.height = '110px'
-        } else if(props.currentRegion === 6) {
-            const urlImg = `https://www.pokencyclopedia.info/sprites/artworks/ken-sugimori/art__${props.idPokemon}.png`
-            setImgPokemon(urlImg)
-            refImgPokemon.current.style.bottom = '5%'
-            refImgPokemon.current.style.height = '110px'
-        } else if(props.currentRegion === 7) {
-            const urlImg = `https://www.pokencyclopedia.info/sprites/artworks/ken-sugimori/art__${props.idPokemon}.png`
-            setImgPokemon(urlImg)
-            refImgPokemon.current.style.bottom = '5%'
-            refImgPokemon.current.style.height = '110px'
-        } else if(props.currentRegion === 8) {
-            const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Shiny-Gen-8/${props.idPokemon}.gif`
-            setImgPokemon(urlImg)
-            refImgPokemon.current.style.bottom = '0%'
-            refImgPokemon.current.style.height = '110px'
-        }
-
-        // setTimeout(() => {
-
-
-        //     if(refImgPokemon.current.clientHeight < 30) {
-        //         // setImgPokemon(`https://www.pokencyclopedia.info/sprites/3ds/spr_3ds/3spr__${props.idPokemon}.png`) 
-        //         setImgPokemon(`https://www.pokencyclopedia.info/sprites/artworks/ken-sugimori/art__${props.idPokemon}.png`)
-        //         // console.log(idPokemonImg.clientHeight)
-        //         // refImgPokemon.current.style.width = '75px'
-        //         // refImgPokemon.current.style.bottom = '12%'
-                
-        //         alert('hoal')
-        //     }
-        // }, 1000)
-
-        // const idPokemonImg = document.getElementById(`id-pokemon-img-${props.idPokemon}`)
-        
-    }, [])
-
     const iterarTypes = (value) => {
         return value.types.map( types => {
             let nameType = types.type.name;
@@ -68,14 +27,32 @@ function Card(props) {
         })
     }
 
-    // <img src="picture1.gif" onerror="this.onerror=null;this.src='missing.gif';"/>
+
+    // Cambiando imagen cuando la url de error 404
+    const changeImgError = () => {
+        // const urlImgCurrent = props.img
+        if(imgPokemon === props.img) {
+            const urlImg = `https://www.pokencyclopedia.info/sprites/artworks/ken-sugimori/art__${props.idPokemon}.png`
+            setImgPokemon(urlImg)
+            refImgPokemon.current.style.bottom = '5%'
+            refImgPokemon.current.style.height = '110px'
+        } else {
+            const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Shiny-Gen-8/${props.idPokemon}.gif`
+            setImgPokemon(urlImg)
+            refImgPokemon.current.style.bottom = '0%'
+            refImgPokemon.current.style.height = '110px'
+        }
+        
+    }
 
     return(
         <>
             {
-                <Link to={{
-                    pathname: `/pokedex/regions/${regionName}/${props.pokemon.name}`
-                }}>
+                <Link 
+                    className="link-card"
+                    to={{
+                        pathname: `/pokedex/regions/${regionName}/${props.pokemon.name}`
+                    }}>
                     <div className="card-container">
                         <h3 className="title-pokemon">
                             #{props.idPokemon} <span className="text-pokemon">{props.pokemon.name}</span>
@@ -86,7 +63,9 @@ function Card(props) {
                             ) : null
                             
                         }
-                        <img ref={refImgPokemon} onClick={() => props.selectDetailPerPokemonFn(props.pokemon.name, props.detailsPokemon, imgPokemon)} id={`id-pokemon-img-${props.idPokemon}`} className="img-pokemon" src={imgPokemon} alt={props.pokemon.name} />
+                        
+                            <img ref={refImgPokemon} onClick={() => props.selectDetailPerPokemonFn(props.pokemon.name, props.detailsPokemon, imgPokemon)} onError={changeImgError} id={`id-pokemon-img-${props.idPokemon}`} className="img-pokemon" src={imgPokemon} alt={props.pokemon.name} />
+                        
                     </div>
                 </Link>
             }
