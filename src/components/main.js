@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Switch,
   Route, 
@@ -28,6 +28,8 @@ function Main() {
   let [sourceRegions, setRegions] = useState(regions)
   let [showDirectlyAccess, setShowDirectlyAccess] = useState(true)
   let [showShowDirectlyAccess, setShowShowDirectlyAccess] = useState(true)
+  let [showProfileOptions, setShowProfileOptions] = useState(false)
+  const refProfileOptions = useRef()
   const history = useHistory()
   const { regionName } = useParams()
 
@@ -94,9 +96,29 @@ function Main() {
     }
   }
 
+  const showProfileOptionsFalseContextFn = () => {
+
+    if(showProfileOptions) {
+      refProfileOptions.current.style.display = 'none'
+      setShowProfileOptions(false)
+    }
+}
+
+const showProfileOptionsFn = () => {
+
+  if(showProfileOptions) {
+      refProfileOptions.current.style.display = 'none'
+      setShowProfileOptions(false)
+  } else {
+      refProfileOptions.current.style.display = 'block'
+      setShowProfileOptions(true)
+  }
+}
+
+
 
 return (
-  <div className="container-style-pokedex">
+  <div className="container-style-pokedex" onClick={showProfileOptionsFalseContextFn}>
     <Switch>
 
       <Route path="/" exact>
@@ -118,6 +140,8 @@ return (
           showDirectlyAccess={showDirectlyAccess}
           showShowDirectlyAccess={showShowDirectlyAccess}
           directlyAccessPathFn={directlyAccessPathFn}
+          showProfileOptionsFn={showProfileOptionsFn}
+          refProfileOptions={refProfileOptions}
         />
       </PrivateRoute>
     </Switch>

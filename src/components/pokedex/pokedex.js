@@ -29,7 +29,10 @@ function Pokedex(props) {
 
     return (
         <>  
-            <Profile />
+            <Profile 
+                showProfileOptionsFn={props.showProfileOptionsFn}
+                refProfileOptions={props.refProfileOptions}
+            />
             <div className={`container-side`}>
                 <SideLeft 
                     transitionPokedex={props.transitionPokedex}

@@ -8,11 +8,11 @@ import {
 import './profile.css'
 
 
-export default function Profile() {
+export default function Profile(props) {
 
     let [showProfileOptions, setShowProfileOptions] = useState(false)
     let [user, setUser] = useState(false)
-    const refProfileOptions = useRef()
+    // const refProfileOptions = useRef()
     const history = useHistory()
 
     useEffect(() => {
@@ -48,8 +48,8 @@ export default function Profile() {
 
         <>
             <nav className="nav-profile">
-                <img onClick={showProfileOptionsFn} className="img-profile" src={user.photoURL} alt="" />
-                <div ref={refProfileOptions} className="profile-options">
+                <img onClick={props.showProfileOptionsFn} className="img-profile" src={user.photoURL} alt="" />
+                <div ref={props.refProfileOptions} className="profile-options">
                     <div className="profile-card">
                         <img className="img-options-profile" src={user.photoURL} alt="" />
                         <h3 className="profile-name">{user.displayName}</h3>
