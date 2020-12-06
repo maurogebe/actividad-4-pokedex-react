@@ -1,14 +1,9 @@
 import React from 'react'
-import {
-    BrowserRouter as Router,
-    Link
-  } from "react-router-dom";
 
 // Import Styles
 import './side-left.css'
 
 function SideLeft(props) {
-
 
     return (
         <>
@@ -33,7 +28,7 @@ function SideLeft(props) {
                             <div className="half-left-pokeball__in">
                                 <div className="half-left-pokeball__in-top"></div>
                                 <div className="half-left-pokeball__in-bottom"></div>
-                                <div className="half-left-pokeball__button" onClick={() => props.showDisplayFn(props.showDirectlyAccess)}>
+                                <div className={`half-left-pokeball__button`} onClick={() => props.showDisplayFn(props.showDirectlyAccess)}>
                                     <div className="half-left-pokeball__button-top"></div>
                                     <div className="half-left-pokeball__button-bottom"></div>
                                 </div>
