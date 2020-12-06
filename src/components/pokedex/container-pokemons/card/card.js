@@ -21,9 +21,9 @@ function Card(props) {
             let nameType = types.type.name;
             // console.log(nameType);
             if(types.slot === 1) {
-                return <h3 className={`type-${nameType}`}></h3>
+                return <h3 className={`type type-${nameType}`}></h3>
             } else {
-                return <h3 className={`type-${nameType} type-secondary`}></h3>
+                return <h3 className={`type type-${nameType} type-secondary`}></h3>
             }
             
         })

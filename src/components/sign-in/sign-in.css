@@ -3,9 +3,10 @@
     height: 70vh;
     padding: 20px;
     margin: 0 auto;
-    background-color: rgba(0, 190, 255, 50%);
+    /* background-color: rgba(0, 190, 255, 50%); */
+    background: linear-gradient(180deg, #4fd0ff 0%, #00404c 100%);
     border-radius: 20px;
-    margin-top: 5vh;
+    top: 5vh;
     position: relative;
     color: #00445d;
   }

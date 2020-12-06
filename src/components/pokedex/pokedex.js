@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import {
-    Switch,
     useLocation,
   } from "react-router-dom";
 
@@ -13,6 +12,7 @@ import ContainerPokemons from './container-pokemons/container-pokemons'
 import ContainerRegions from './container-regions/container-regions'
 import DetailPokemon from './detail-pokemon/detail-pokemon'
 import PrivateRoute from '../private-route/private-route'
+import Profile from '../profile/profile'
 
 // Import Style
 import './pokedex.css'
@@ -29,6 +29,7 @@ function Pokedex(props) {
 
     return (
         <>  
+            <Profile />
             <div className={`container-side`}>
                 <SideLeft 
                     transitionPokedex={props.transitionPokedex}
@@ -36,33 +37,30 @@ function Pokedex(props) {
                     showDirectlyAccess={props.showDirectlyAccess}
                     showShowDirectlyAccess={props.showShowDirectlyAccess}
                 />
-                <Switch>
-                    <PrivateRoute path="/pokedex/regions" exact={true}>
-                        <div className="container-pokemon">
-                            <ContainerRegions
-                                sourceRegions={props.sourceRegions}
-                            />
-                        </div>
-                    </PrivateRoute>
+                <PrivateRoute path="/pokedex/regions" exact={true}>
+                    <div className="container-pokemon">
+                        <ContainerRegions
+                            sourceRegions={props.sourceRegions}
+                        />
+                    </div>
+                </PrivateRoute>
 
-                    <PrivateRoute path="/pokedex/regions/:regionName" exact={true}>
-                        <div className="container-pokemon">
-                            <ContainerPokemons
-                                imgPokemonsFn={props.imgPokemonsFn}
-                                getDetail={props.getDetail}
-                            />
-                        </div>
-                    </PrivateRoute>
+                <PrivateRoute path="/pokedex/regions/:regionName" exact={true}>
+                    <div className="container-pokemon">
+                        <ContainerPokemons
+                            imgPokemonsFn={props.imgPokemonsFn}
+                            getDetail={props.getDetail}
+                        />
+                    </div>
+                </PrivateRoute>
 
-                    <PrivateRoute path="/pokedex/regions/:regionName/:pokemonName" exact={false}>
-                        <div className="container-pokemon">
-                            <DetailPokemon
+                <PrivateRoute path="/pokedex/regions/:regionName/:pokemonName" exact={false}>
+                    <div className="container-pokemon">
+                        <DetailPokemon
 
-                            />
-                        </div>
-                    </PrivateRoute>
-                    
-                </Switch>
+                        />
+                    </div>
+                </PrivateRoute>
 
                 <SideRight 
                     showPokemons={props.showPokemons}

@@ -18,17 +18,16 @@ function LogIn(props) {
     let email = useRef()
     let password = useRef()
     const googleProvider = new firebase.auth.GoogleAuthProvider()
-    const historyPokedex = useHistory()
+    const history = useHistory()
 
-    // Cerrar sesion
-    const cerrarSesion = () => {
-        firebase.auth().signOut().then(function() {
-            alert('Sesion Cerrada')
-          }).catch(function(error) {
-
-          });
-          
-    }
+    useEffect(() => {
+        firebase.auth().onAuthStateChanged(user => {
+            if(user) {
+                history.push('/pokedex')
+            }
+            
+        });
+    }, [])
 
     // Iniciando sesion con google
     const showGooglePopup = async(event) => {
@@ -36,8 +35,8 @@ function LogIn(props) {
         try {
             let result = await firebase.auth().signInWithPopup(googleProvider)
             console.log("Autenticado satisfactoriamente", result.user);
-            props.setUserFn(result.user)
-            historyPokedex.push('/pokedex')
+            // props.setUserFn(result.user)
+            history.push('/pokedex')
         } catch (error) {
             console.log("Error en la autenticacion", error);
         }
@@ -50,7 +49,7 @@ function LogIn(props) {
         try {
             let result = await firebase.auth().signInWithEmailAndPassword(email.current.value, password.current.value)
             console.log("Autenticado satisfactoriamente", result.user);
-            historyPokedex.push('/pokedex')
+            history.push('/pokedex')
         } catch (error) {
             alert('')
             console.log("Error en la autenticacion", error);
@@ -75,8 +74,6 @@ function LogIn(props) {
                     </p>
                 </form>
             </div>
-
-            <button onClick={cerrarSesion}>Cerrar Sesion</button>
         </>
     )
 }

@@ -22,18 +22,13 @@ import './main.css';
 
 function Main() {
 
-  let [pokemons, setPokemons] = useState([])
   let [showDisplay, setShowDisplay] = useState(false)
-  let [showRegions, setShowRegions] = useState(false)  
   let [showPokemons, setShowPokemons] = useState(false)
   let [transitionPokedex, setTransitionPokedex] = useState(false)
   let [sourceRegions, setRegions] = useState(regions)
   let [showDirectlyAccess, setShowDirectlyAccess] = useState(true)
   let [showShowDirectlyAccess, setShowShowDirectlyAccess] = useState(true)
-  let [user, setUser] = useState(false)
-  const regionsHistory = useHistory()
-  const pokemonDetailHistory = useHistory()
-  const pokemonsHistory = useHistory()
+  const history = useHistory()
   const { regionName } = useParams()
 
   // For para acceder a los detalles de cada pokemon para evitar la asincronia ya que el forEach no funciona con async await
@@ -43,6 +38,7 @@ function Main() {
     }
   }
   
+  // Metodo para acceder a los detalles de los pokemones, y a la vez tratando la asincronia
   const getDetail = async(arregloPokemones) => {
     let tempArrayDetail = [];
     return new Promise(async (resolve, reject) => {
@@ -60,20 +56,25 @@ function Main() {
     })
   }
 
+  const directlyAccessPathFn = () => {
+    setShowDirectlyAccess(false)
+    setShowShowDirectlyAccess(true)
+  }
+
   const showDisplayFn = (value) => {
     if(showDisplay) {
       setShowDisplay(false)
-      regionsHistory.push("/pokedex")
+      history.push("/pokedex")
     } else {
       if(value) {
-          regionsHistory.push("/pokedex/regions")
+          history.push("/pokedex/regions")
           setShowDisplay(true)
           setShowShowDirectlyAccess(false)
           setShowDirectlyAccess(false)
       } else {
           setShowShowDirectlyAccess(false)
           setTimeout(() => {
-            regionsHistory.push("/pokedex/regions")
+            history.push("/pokedex/regions")
             setShowDisplay(true)
           }, 1000)
       }
@@ -82,56 +83,41 @@ function Main() {
     transitionPokedex ? setTransitionPokedex(false) : setTransitionPokedex(true)
   }
 
-  const directlyAccessPathFn = () => {
-    setShowDirectlyAccess(false)
-    setShowShowDirectlyAccess(true)
+  // Le pasa el cualquier numero, lo valida y lo devuelve con dos ceros antes del numero si solo ponen uno si ponen dos numero devuelve solo un cero
+  const imgPokemons = (value) => {
+    if(value.toString().length === 1) {
+      return `00${value}`
+    } else if(value.toString().length === 2) {
+      return `0${value}`
+    } else {
+      return value
+    }
   }
-
-const imgPokemons = (value) => {
-  if(value.toString().length === 1) {
-    return `00${value}`
-  } else if(value.toString().length === 2) {
-    return `0${value}`
-  } else {
-    return value
-  }
-}
-
-// const backPokemonDetailFn = () => {
-//   setShowDetailPerPokemon(false)
-//   setShowPokemons(true)
-// }
 
 
 return (
   <div className="container-style-pokedex">
     <Switch>
-      <Route path="/log-in">
-        <LogIn
-          setUserFn={setUser}
-        />
+
+      <Route path="/" exact>
+        <LogIn />
       </Route>
 
       <Route path="/sign-in">
-        <SignIn 
-          setUserFn={setUser}
-        />
+        <SignIn />
       </Route>
       
-      <PrivateRoute path="/pokedex" user={user} >
+      <PrivateRoute path="/pokedex">
         <Pokedex 
-          pokemons={pokemons}
           imgPokemonsFn={imgPokemons}
-          showDisplay={showDisplay}
           showDisplayFn={showDisplayFn}
           transitionPokedex={transitionPokedex}
           sourceRegions={sourceRegions}
-          showRegions={showRegions}
           showPokemons={showPokemons}
           getDetail={getDetail}
           showDirectlyAccess={showDirectlyAccess}
-          directlyAccessPathFn={directlyAccessPathFn}
           showShowDirectlyAccess={showShowDirectlyAccess}
+          directlyAccessPathFn={directlyAccessPathFn}
         />
       </PrivateRoute>
     </Switch>

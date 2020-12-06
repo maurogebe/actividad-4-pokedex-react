@@ -14,14 +14,12 @@ import './private-route.css'
 export default function PrivateRoute(props) {
 
     let [user, setUser] = useState({})
-    let [showDisplayAuth, setShowDisplayAuth] = useState(false)
 
     // Verificando si hay un usuario con sesion iniciada
     useEffect(() => {
         firebase.auth().onAuthStateChanged(user => {
             console.log(user)
             setUser(user)
-            setShowDisplayAuth(true)
         });
     }, [])
 
@@ -33,7 +31,7 @@ export default function PrivateRoute(props) {
                         props.children
                     ) : (
                         <h1>
-                            Inicia Sesion <Link to="/log-in">aqui</Link> para acceder a la Pokedex
+                            Inicia Sesion <Link to="/">aqui</Link> para acceder a la Pokedex
                         </h1>
                     )
                 }

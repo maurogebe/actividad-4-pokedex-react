@@ -62,7 +62,7 @@ function SignIn(props) {
                         <FontAwesomeIcon className="icon-google" icon={faGoogle} size="lg" /> Continue whit Google  
                     </button>
                     <p className="text-sign text-sign--position">
-                    You are already a member? <Link to="/log-in" className="link-sign-to-log">Log In</Link>
+                    You are already a member? <Link to="/" className="link-sign-to-log">Log In</Link>
                     </p>
                 </form>
             </div>
