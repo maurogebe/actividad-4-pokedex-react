@@ -21,17 +21,17 @@ export default function Profile(props) {
         });
       }, [])
 
-    const showProfileOptionsFn = () => {
+    // const showProfileOptionsFn = () => {
 
-        if(showProfileOptions) {
-            refProfileOptions.current.style.display = 'none'
-            setShowProfileOptions(false)
-        } else {
-            refProfileOptions.current.style.display = 'block'
-            setShowProfileOptions(true)
-            console.log(user)
-        }
-    }
+    //     if(showProfileOptions) {
+    //         refProfileOptions.current.style.display = 'none'
+    //         setShowProfileOptions(false)
+    //     } else {
+    //         refProfileOptions.current.style.display = 'block'
+    //         setShowProfileOptions(true)
+    //         console.log(user)
+    //     }
+    // }
 
     // Cerrar sesion
     const signOut = () => {
