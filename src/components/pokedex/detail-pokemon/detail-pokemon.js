@@ -98,7 +98,7 @@ function DetailPokemon(props) {
                         pokemonDetail.types.map( types => {
                             console.log(types)
                             return (
-                                <span className={`detail-type-${types.type.name}`}>{types.type.name}</span>
+                                <span className={`detail-type-${types.type.name}`}>{firstLetterMayus(types.type.name)}</span>
                             )
                         })
                     }
