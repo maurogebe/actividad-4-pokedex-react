@@ -34,3 +34,61 @@
     height: 65%;
   }
 }
+
+
+@media screen and (max-width: 850px) {
+  .container-side {
+    width: 55%;
+    height: 55%;
+  }
+}
+
+
+@media screen and (max-width: 720px) {
+  .container-side {
+    width: 60%;
+    height: 50%;
+  }
+  .container-pokemon {
+    left: 1%;
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  .container-side {
+    width: 60%;
+    height: 60%;
+  }
+  .container-pokemon {
+    width: 78%;
+    height: 100%;
+    top: 0%;
+    left: 11%;
+    padding-left: 0%;
+    padding-right: 0%;
+    padding-top: 11%;
+    padding-bottom: 6%;
+  }
+}
+
+
+@media screen and (max-width: 530px) {
+  .container-pokemon {
+    width: 90%;
+    left: 5%;
+  }
+}
+
+
+
+@media screen and (max-width: 450px) {
+  .container-side {
+    width: 75%;
+    height: 65%;
+  }
+  .container-pokemon {
+    width: 94%;
+    left: 3%;
+  }
+}

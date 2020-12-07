@@ -104,6 +104,7 @@ function DetailPokemon(props) {
                     }
                 </div>
                 <div className="container-stats">
+                    <h3>Stats:</h3>
                     {
                         pokemonDetail.stats.map( (stats, index) => {
                             return (

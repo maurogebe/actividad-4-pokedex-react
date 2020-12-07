@@ -124,3 +124,17 @@
     font-size: 17px;
   }
 }
+
+
+@media screen and (max-width: 600px) {
+  .title-pokemon {
+    font-size: 14px;
+  }
+  .type {
+    width: 15px;
+    height: 15px;
+  }
+  .type-secondary {
+    top: 35%;
+  }
+}

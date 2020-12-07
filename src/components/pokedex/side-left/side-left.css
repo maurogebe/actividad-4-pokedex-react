@@ -232,3 +232,55 @@
       border-bottom: 43px solid white;
     }
   }
+
+
+  @media screen and (max-width: 720px) {
+    .left-show-pokemons {
+      left: -28%;
+    }
+    .show-directly-access-left {
+      left: -28%;
+    }
+  }
+
+
+
+  @media screen and (max-width: 600px) {
+    .left-side {
+      height: 75%;
+      width: 40%;
+      top: 2%;
+      left: 30%;
+      transform: rotate(90deg);
+      transition: top 1s;
+    }
+    .left-show-pokemons {
+      top: -45%;
+      left: 30%;
+    }
+    .show-directly-access-left {
+      top: -45%;
+      left: 30%;
+    }
+  }
+
+
+
+  @media screen and (max-width: 450px) {
+    .left-side {
+      height: 70%;
+      width: 40%;
+      top: 2%;
+      left: 30%;
+      transform: rotate(90deg);
+      transition: top 1s;
+    }
+    .left-show-pokemons {
+      top: -42%;
+      left: 30%;
+    }
+    .show-directly-access-left {
+      top: -42%;
+      left: 30%;
+    }
+  }
