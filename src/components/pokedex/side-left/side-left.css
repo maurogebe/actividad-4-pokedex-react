@@ -286,7 +286,7 @@
     .left-side {
       height: 70%;
       width: 40%;
-      top: 2%;
+      top: 6%;
       left: 30%;
       transform: rotate(90deg);
       transition: top 1s;
@@ -307,6 +307,7 @@
     .left-side {
       height: 65%;
       width: 44%;
+      top: 7%;
     }
     .left-show-pokemons {
       top: -40%;
