@@ -27,7 +27,7 @@ function ContainerRegions(props) {
                                                     <div className="in-top--left"></div>
                                                     <div className="in-top--right"></div>
                                                 </div>
-                                                    <h3>{region.name}</h3>
+                                                    <h3 className="title-region">{region.name}</h3>
                                                 <div className="in-bottom">
                                                     <div className="in-bottom--left"></div>
                                                     <div className="in-bottom--right"></div>

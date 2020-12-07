@@ -7,7 +7,7 @@
     border: 3px solid;
     position: absolute;
     top: 0;
-    right: 11%;
+    right: 21%;
     transition: right 1s;
   }
   .right-show-pokemons {
@@ -164,4 +164,44 @@
     background: white;
     box-shadow: -6px 0px 1px hsl(0deg 0% 85%);
     border-radius: 50%; */
+  }
+
+
+
+  /* Responsive */
+
+
+  @media screen and (max-width: 1200px) {
+    .right-side {
+      width: 35%;
+      right: 15%;
+    }
+    .right-show-pokemons {
+      right: -32%;
+    }
+    .show-directly-access-right {
+      right: -32%;
+    }
+  }
+
+
+  @media screen and (max-width: 1080px) {
+    .right-side {
+      width: 38%;
+      right: 13%;
+    }
+    .right-show-pokemons {
+      right: -34%;
+    }
+    .show-directly-access-right {
+      right: -34%;
+    }
+    .half-right-pokeball__in-top {
+      border-right: 43px solid white;
+      border-top: 43px solid white;
+    }
+    .half-right-pokeball__in-bottom {
+      border-right: 43px solid white;
+      border-bottom: 43px solid white;
+    }
   }

@@ -16,7 +16,7 @@
   cursor: pointer;
 }
 .img-pokemon {
-  height: 150px;
+  height: 100%;
   margin-top: 10px;
   position: absolute;
   bottom: -5%;
@@ -43,6 +43,7 @@
   top: 20%;
   right: 10%;
   border-radius: 10px;
+  z-index: 1;
 }
 .type-normal {
   background-color: #929191;
@@ -106,4 +107,20 @@
 }
 .type-secondary {
   top: 40%;
+}
+
+
+
+/* Responsive */
+
+
+@media screen and (max-width: 1080px) {
+  .card-container {
+    height: 135px;
+  }
+  .title-pokemon {
+    top: 3%;
+    left: 8%;
+    font-size: 17px;
+  }
 }

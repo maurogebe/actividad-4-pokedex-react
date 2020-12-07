@@ -36,10 +36,10 @@ function DetailPokemon(props) {
     useEffect(() => {
         pokemonDetail.stats.map( (stats, index) => {
             const getId = document.getElementById(`bar-stat-${index}`)
-            let getStatPorcentual = stats.base_stat * 1.5
-            let getCenterPerStat = (350 - getStatPorcentual) / 2
-            getId.style.width = `${getStatPorcentual}px`
-            getId.style.left = `${getCenterPerStat}px`
+            let getStatPorcentual = stats.base_stat / 1.5
+            let getCenterPerStat = (100 - getStatPorcentual) / 2
+            getId.style.width = `${getStatPorcentual}%`
+            getId.style.left = `${getCenterPerStat}%`
 
         })
         setShowPokemonDetail(true)

@@ -21,7 +21,16 @@
 
 @media screen and (max-width: 1200px) {
   .container-side {
-    height: 72%;
-    top: 13%;
+    width: 55%;
+    height: 70%;
+    top: 15%;
+  }
+}
+
+
+@media screen and (max-width: 1080px) {
+  .container-side {
+    width: 50%;
+    height: 65%;
   }
 }

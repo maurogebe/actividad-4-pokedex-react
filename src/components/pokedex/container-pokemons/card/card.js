@@ -37,12 +37,12 @@ function Card(props) {
             const urlImg = `https://www.pokencyclopedia.info/sprites/artworks/ken-sugimori/art__${props.idPokemon}.png`
             setImgPokemon(urlImg)
             refImgPokemon.current.style.bottom = '5%'
-            refImgPokemon.current.style.height = '110px'
+            refImgPokemon.current.style.height = '65%'
         } else {
             const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Shiny-Gen-8/${props.idPokemon}.gif`
             setImgPokemon(urlImg)
             refImgPokemon.current.style.bottom = '0%'
-            refImgPokemon.current.style.height = '110px'
+            refImgPokemon.current.style.height = '65%'
         }
         
     }

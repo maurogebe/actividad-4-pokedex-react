@@ -92,3 +92,17 @@
       height: 130px;
     }
   }
+
+
+  @media screen and (max-width: 1080px) {
+    .container-region {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    .outline {
+      width: 120px;
+      height: 120px;
+    }
+    .title-region {
+      font-size: 16px;
+    }
+  }
