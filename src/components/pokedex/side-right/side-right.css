@@ -229,20 +229,37 @@
     .right-side {
       height: 75%;
       width: 40%;
-      right: 30%;
-      top: 45%;
+      left: 30%;
+      top: 42%;
       transform: rotate(90deg);
       transition: top 1s;
     }
     .right-show-pokemons {
       top: 75%;
-      right: 30%;
+      left: 30%;
     }
     .show-directly-access-right {
       top: 75%;
-      right: 30%;
+      left: 30%;
     }
   }
+
+
+
+  @media screen and (max-width: 530px) {
+    .right-side {
+      top: 40%;
+    }
+    .right-show-pokemons {
+      top: 75%;
+      left: 30%;
+    }
+    .show-directly-access-right {
+      top: 75%;
+      left: 30%;
+    }
+  }
+
 
 
   @media screen and (max-width: 450px) {
@@ -255,11 +272,28 @@
       transition: top 1s;
     }
     .right-show-pokemons {
-      top: 72%;
+      top: 74%;
       right: 30%;
     }
     .show-directly-access-right {
-      top: 72%;
+      top: 74%;
       right: 30%;
+    }
+  }
+
+
+
+  @media screen and (max-width: 414px) {
+    .right-side {
+      height: 65%;
+      width: 44%;
+    }
+    .right-show-pokemons {
+      top: 77%;
+      right: 28%;
+    }
+    .show-directly-access-right {
+      top: 77%;
+      right: 28%;
     }
   }

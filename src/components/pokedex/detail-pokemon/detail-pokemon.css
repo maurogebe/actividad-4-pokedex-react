@@ -242,3 +242,34 @@
     margin-top: 100%;
   }
 }
+
+
+
+@media screen and (max-width: 600px) {
+  .detail-pokemon__title-pokemon {
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
+}
+
+
+
+@media screen and (max-width: 550px) {
+  .container-stats {
+    margin-top: 110%;
+  }
+}
+
+
+@media screen and (max-width: 500px) {
+  .container-stats {
+    margin-top: 120%;
+  }
+}
+
+
+@media screen and (max-width: 450px) {
+  .container-stats {
+    margin-top: 130%;
+  }
+}

@@ -92,3 +92,12 @@
     left: 3%;
   }
 }
+
+
+
+@media screen and (max-width: 414px) {
+  .container-pokemon {
+    width: 95%;
+    left: 5%;
+  }
+}

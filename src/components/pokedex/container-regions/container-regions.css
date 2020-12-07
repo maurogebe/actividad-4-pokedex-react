@@ -143,5 +143,14 @@
   @media screen and (max-width: 850px) {
     .container-region {
       grid-template-columns: 1fr 1fr;
+      padding-top: 5%;
+    }
+  }
+
+
+
+  @media screen and (max-width: 600px) {
+    .container-region {
+      padding-top: 10%;
     }
   }
