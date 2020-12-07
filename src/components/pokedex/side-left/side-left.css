@@ -1,6 +1,6 @@
 /* Left Side */
 .left-side {
-    width: 40%;
+    width: 30%;
     height: 100%;
     background-color: #c70000;
     border-radius: 50px 0px 0px 50px;
@@ -12,14 +12,14 @@
     transition: left 1s;
   }
   .left-show-pokemons {
-    left: -340px;
+    left: -26%;
     transition: all 1s;
   }
   .left-side-static {
     transition: none;
   }
   .show-directly-access-left {
-    left: -340px;
+    left: -26%;
   }
   /* Notch Top */
   .left-side__notches-top {

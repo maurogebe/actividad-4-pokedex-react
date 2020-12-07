@@ -22,9 +22,18 @@
     background: #c70000;
     border-radius: 5px;
 }
-.container-pokemon .icon-back-ios {
+.container-pokemon .icon-back-ios-regions {
     position: absolute;
     top: 1%;
-    left: 3%;
+    left: 5%;
     cursor: pointer;
+  }
+
+
+  /* Responsive */
+
+  @media screen and (max-width: 1200px) {
+    .pokedex-container {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
   }

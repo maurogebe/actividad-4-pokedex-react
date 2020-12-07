@@ -114,7 +114,7 @@ function ContainerPokemons(props) {
       <Link to={{
           pathname: `/pokedex/regions`
       }}>
-          <ArrowBackIos className="icon-back-ios" fontSize="large" />
+          <ArrowBackIos className="icon-back-ios-regions" fontSize="large" />
       </Link>
       <div ref={valueScroll} onScroll={getEndScrollFn} className="pokedex-container">
       {

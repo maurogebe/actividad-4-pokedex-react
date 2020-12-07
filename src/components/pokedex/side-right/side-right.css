@@ -1,6 +1,6 @@
 /* Right Side */
 .right-side {
-    width: 40%;
+    width: 30%;
     height: 100%;
     background-color: #c70000;
     border-radius: 0px 50px 50px 0px;
@@ -11,14 +11,14 @@
     transition: right 1s;
   }
   .right-show-pokemons {
-    right: -340px;
+    right: -26%;
     transition: all 1s;
   }
   .right-side-static {
     transition: none;
   }
   .show-directly-access-right {
-    right: -340px;
+    right: -26%;
   }
   /* Notch Top */
   .right-side__notches-top {

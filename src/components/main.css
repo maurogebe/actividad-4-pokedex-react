@@ -27,5 +27,7 @@
   height: 100vh;
   background: linear-gradient(180deg, #4fd0ff 0%, #00404c 100%);
   position: relative;
+  display: flex;
+  justify-content: center;
 }
   
