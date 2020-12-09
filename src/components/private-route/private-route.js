@@ -14,12 +14,16 @@ import './private-route.css'
 export default function PrivateRoute(props) {
 
     let [user, setUser] = useState({})
+    // let [authentication, setAuthentication] = useState(true)
 
     // Verificando si hay un usuario con sesion iniciada
     useEffect(() => {
         firebase.auth().onAuthStateChanged(user => {
-            console.log(user)
-            setUser(user)
+            // if(user) {
+                setUser(user)
+            // } else {
+            //     setAuthentication(false)
+            // }
         });
     }, [])
 

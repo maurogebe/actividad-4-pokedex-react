@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {
    useParams, 
-   Link 
+   Link,
+   useHistory
   } from "react-router-dom";
 // import AWS from 'aws-sdk'
 
@@ -15,7 +16,7 @@ import Card from './card/card';
 import './container-pokemons.css';
 
 // Import Icons
-import { ArrowBackIos } from '@material-ui/icons/';
+import { ArrowBackIos, ArrowForwardIos } from '@material-ui/icons';
 
 //  Import Material UI
 import { Skeleton } from '@material-ui/lab'
@@ -27,14 +28,15 @@ function ContainerPokemons(props) {
   let [pokemons, setPokemons] = useState([])
   let [pokemonsDetails, setPokemonsDetails] = useState([])
   let [regionsAll, setRegionsAll] = useState(regions)
-  let [showCardsPokemons, setShowCardsPokemons] = useState(false)
   let [pokemonPerPage, setPokemonPerPage] = useState(0)
   let [limitPokemon, setLimitPokemon] = useState(20)
   let [currentRegion, setCurrentRegion] = useState()
   let [scrollActive, setScrollActive] = useState(true)
   let [scrollFinish, setScrollFinish] = useState(true)
   let valueScroll = useRef(0)
+  const refPokemonSearch = useRef()
   let { regionName } = useParams()
+  const history = useHistory()
 
 
   // Hacer la peticion a la API cada vez que entren por la url o escogiendo la region 
@@ -43,22 +45,18 @@ function ContainerPokemons(props) {
     setCurrentRegion(region)
     let copyPokemon = []
     let copyDetail = []
-    setShowCardsPokemons(false)
     const getPokemons = async() => {
       const url = 'https://pokeapi.co/api/v2/pokemon'
       let response = await fetch(`${url}?limit=${limitPokemon}&offset=${region.startPokemons + pokemonPerPage}`);
       let data = await response.json();
       let results = data.results;
       let details = await props.getDetail(results)
-      copyPokemon.push(...pokemons, ...results)
-      copyDetail.push(...pokemonsDetails, ...details)
-      setPokemons(copyPokemon)
+      copyPokemon = [...pokemons, ...results]
+      copyDetail = [...pokemonsDetails, ...details]
       setPokemonsDetails(copyDetail)
+      setPokemons(copyPokemon)
     }
     getPokemons()
-    setTimeout(() => {
-      console.log(copyPokemon)
-    },5000)
 
     // console.log(details)
   }, [pokemonPerPage])
@@ -67,7 +65,6 @@ function ContainerPokemons(props) {
   // Cada que pokemonsDetails cambie de valor debe activar de nuevo la vista de los pokemones para que muestre la lista actualizada despues de hacer el scroll infinito
   useEffect(() => {
     if(pokemonsDetails.length > pokemonPerPage) {
-      setShowCardsPokemons(true)
       setScrollActive(true)
     }
   }, [pokemonsDetails])
@@ -86,7 +83,7 @@ function ContainerPokemons(props) {
   const getEndScrollFn = () => {
     if(scrollFinish) {
       if(scrollActive) {
-        if((pokemonPerPage + 40) <= currentRegion.limitPokemon) {
+        if((pokemonPerPage + 40) < currentRegion.limitPokemon) {
           let currentScroll = valueScroll.current.scrollTop + valueScroll.current.offsetHeight
           if(currentScroll === valueScroll.current.scrollHeight) {
             setPokemonPerPage(pokemonPerPage + 20)
@@ -109,23 +106,40 @@ function ContainerPokemons(props) {
 
   }
 
+  const pokemonSearch = (event) => {
+    event.preventDefault()
+
+    history.push(`/pokedex/regions/${regionName}/${refPokemonSearch.current.value.toLowerCase()}`)
+  }
+
   return (
     <>
-      <Link to={{
-          pathname: `/pokedex/regions`
-      }}>
-          <ArrowBackIos className="icon-back-ios-regions" fontSize="large" />
-      </Link>
+      <div className="search">
+        <Link to={{
+            pathname: `/pokedex/regions`
+        }}>
+            <ArrowBackIos className="icon-back-ios-regions" fontSize="large" />
+        </Link>
+        <form className="form-pokemon-search" onSubmit={pokemonSearch}>
+          <input className="pokemon-search" ref={refPokemonSearch} type="text" placeholder="Search Pokemon"/>
+          <button className="button-pokemon-search" type="submit">
+            <ArrowForwardIos className="icon-submit-pokemon-search" fontSize="small" />
+          </button>
+        </form>
+      </div>
       <div ref={valueScroll} onScroll={getEndScrollFn} className="pokedex-container">
+        {
+          console.log(pokemons)
+        }
       {
           pokemons.map( (pokemon, index) => {
             return (
-              showCardsPokemons ? (
+              pokemonsDetails.length != 0 ? (
                 <Card 
                   key={index + 1}
                   pokemon={pokemon}
                   img={getImgFn(pokemonsDetails[index].id)}
-                  idPokemon={pokemonsDetails[index].id} 
+                  idPokemon={pokemonsDetails[index].id}
                   detailsPokemon={pokemonsDetails[index]}
                 />
               ) : (

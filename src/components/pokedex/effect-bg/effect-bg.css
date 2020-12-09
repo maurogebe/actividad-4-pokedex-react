@@ -83,3 +83,17 @@
     0%   { transform: translateY(0); }
     100% { transform: translateY(-700px) rotate(600deg); }
 }
+
+
+
+
+/* Responsive */
+
+
+@media screen and (max-width: 1200px) {
+    .effect > li {
+        width: 0%;
+        height: 0%;
+        position: static;
+    }
+}

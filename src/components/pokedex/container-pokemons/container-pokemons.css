@@ -22,11 +22,50 @@
     background: #c70000;
     border-radius: 5px;
 }
-.container-pokemon .icon-back-ios-regions {
+.form-pokemon-search {
+
+}
+.search {
     position: absolute;
+    top: 0;
+    display: flex;
+    align-items: center;
+}
+.container-pokemon .icon-back-ios-regions {
+    /* position: absolute;
     top: 1%;
-    left: 5%;
+    left: 5%; */
     cursor: pointer;
+    color: #002f40;
+  }
+  .pokemon-search {
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    height: 4vh;
+    padding-left: 5%;
+    background-color: #002f403b;
+    color: #002f40;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .pokemon-search::-webkit-input-placeholder {
+    color: #002f40;
+    font-weight: normal;
+  }
+  .button-pokemon-search {
+    position: absolute;
+    border: 0;
+    outline: none;
+    background: transparent;
+    right: 0%;
+    top: 25%;
+    height: 50%;
+    cursor: pointer;
+  }
+  .form-pokemon-search .icon-submit-pokemon-search {
+    height: 100%;
+    color: #002f40;
   }
 
 

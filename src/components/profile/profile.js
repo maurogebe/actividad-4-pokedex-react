@@ -47,17 +47,21 @@ export default function Profile(props) {
     return (
 
         <>
-            <nav className="nav-profile">
-                <img onClick={props.showProfileOptionsFn} className="img-profile" src={user.photoURL} alt="" />
-                <div ref={props.refProfileOptions} className="profile-options">
-                    <div className="profile-card">
-                        <img className="img-options-profile" src={user.photoURL} alt="" />
-                        <h3 className="profile-name">{user.displayName}</h3>
-                        <h4 className="profile-email">{user.email}</h4>
-                        <button onClick={signOut} className="profile-sign-out">Sign Out</button>
-                    </div>
-                </div>
-            </nav>
+            {
+                user ? (
+                    <nav className="nav-profile">
+                        <img onClick={props.showProfileOptionsFn} className="img-profile" src={user ? user.photoURL : ''} alt="" />
+                        <div ref={props.refProfileOptions} className="profile-options">
+                            <div className="profile-card">
+                                <img className="img-options-profile" src={user.photoURL} alt="" />
+                                <h3 className="profile-name">{user.displayName}</h3>
+                                <h4 className="profile-email">{user.email}</h4>
+                                <button onClick={signOut} className="profile-sign-out">Sign Out</button>
+                            </div>
+                        </div>
+                    </nav>
+                ) : null
+            }
         </>
     )
 }

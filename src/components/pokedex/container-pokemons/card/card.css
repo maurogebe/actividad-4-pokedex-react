@@ -1,6 +1,7 @@
 .link-card {
   margin-right: 10px;
   margin-bottom: 10px;
+  color: #002f40;
 }
 .card-container {
   display: flex;
@@ -32,6 +33,8 @@
   position: absolute;
   top: 0%;
   left: 10%;
+  right: 5%;
+  font-size: 17px;
 }
 .text-pokemon {
   text-transform: capitalize;

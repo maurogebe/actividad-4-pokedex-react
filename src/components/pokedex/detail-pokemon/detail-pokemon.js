@@ -23,13 +23,16 @@ function DetailPokemon(props) {
 
     // Haciendo la peticion para acceder a los detalles del pokemon cuando se ingrese por el link en la lista o por el url directamente
     useEffect(async() => {
+        // const regionId = regionsAll.findIndex( region => region.name.toLowerCase() === regionName)
+        // setCurrentRegion(regionId + 1)
+        // setPokemonImg(`https://gifs-pokedex.s3.amazonaws.com/Gen_1/${firstLetterMayus(pokemonName)}.gif`)
         const url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}/`
         let response = await fetch(url);
         let data = await response.json();
         let results = data;
         setPokemonDetail(results)
-        const region = sourceRegions.findIndex((r) => regionName.toUpperCase() === r.name.toUpperCase()) 
-        setCurrentRegion(region + 1)
+        const regionId = sourceRegions.findIndex( region => regionName === region.name.toLowerCase()) 
+        setCurrentRegion(regionId + 1)
     }, [])
 
     // Cuando el valor de pokemonDetail va a agregar los stats
@@ -53,33 +56,33 @@ function DetailPokemon(props) {
 
     // Accediendo a gif dependiendo de la region
     const getImgPerRegion = (name, id) => {
-        if(currentRegion === 1) {
+
+        if(id <= 151) {
             const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Gen_1/${firstLetterMayus(name)}.gif`
             return urlImg
-        } else if(currentRegion === 2) {
+        } else if(id <= 251) {
             const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Gen_2/${firstLetterMayus(name)}.gif`
             return urlImg
-        } else if(currentRegion === 3) {
+        } else if(id <= 386) {
             const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Gen_3/${firstLetterMayus(name)}.gif`
             return urlImg
-        } else if(currentRegion === 4) {
+        } else if(id <= 493) {
             const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Gen-4/${firstLetterMayus(name)}.gif`
             return urlImg
-        } else if(currentRegion === 5) {
+        } else if(id <= 649) {
             const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Shiny-Gen-5/${firstLetterMayus(name)}.gif`
             return urlImg
-        } else if(currentRegion === 6) {
+        } else if(id <= 721) {
             const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Shiny-Gen-6/${firstLetterMayus(name)}.gif`
             return urlImg
-        } else if(currentRegion === 7) {
+        } else if(id <= 809) {
             const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Shiny-Gen-7/${firstLetterMayus(name)}.gif`
             return urlImg
-        } else if(currentRegion === 8) {
+        } else {
             const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Shiny-Gen-8/${id}.gif`
             return urlImg
-        }else {
-
         }
+
     }
 
     return (
