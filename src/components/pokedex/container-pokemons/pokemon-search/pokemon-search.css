@@ -1,0 +1,142 @@
+.pokemon-search {
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    height: 4vh;
+    padding-left: 5%;
+    background-color: #002f403b;
+    color: #002f40;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .pokemon-search::-webkit-input-placeholder {
+    color: #002f40;
+    font-weight: normal;
+  }
+  .button-pokemon-search {
+    position: absolute;
+    border: 0;
+    outline: none;
+    background: transparent;
+    right: 0%;
+    top: 25%;
+    height: 50%;
+    cursor: pointer;
+  }
+  .form-pokemon-search .icon-submit-pokemon-search {
+    height: 100%;
+    color: #002f40;
+  }
+
+  /* Filter de pokemones */
+
+  .filtered-pokemon-search {
+    position: absolute;
+    /* padding-left: 3%; */
+    margin-top: 3%;
+    width: 87%;
+    border-radius: 20px;
+    z-index: 2;
+    overflow: auto;
+    background-color: #2e9ec5;
+  }
+  .filtered-pokemon-search::-webkit-scrollbar {
+    width: 0.5rem;
+    padding-right: 10px;
+    height: 90%;
+  }
+  .filtered-pokemon-search::-webkit-scrollbar-track {
+      background: transparent;
+  }
+  .filtered-pokemon-search::-webkit-scrollbar-thumb {
+      background: #c70000;
+      border-radius: 5px;
+  }
+  .filtered-pokemon-link {
+    text-decoration: none;
+    color: #002f40;
+  }
+  .filtered-pokemon-link:hover {
+    color: #ececec;
+  }
+  .filtered-pokemon-option {
+    padding-left: 5%;
+    display: flex;
+    align-items: center;
+    height: 8vh;
+  }
+  .filtered-pokemon-name {
+    padding-bottom: 3%;
+  }
+  .filtered-pokemon-img {
+    height: 100%;
+  }
+
+  .container-skeleton .skeleton {
+    height: 8vh;
+  }
+
+
+  /* Hover en la busqueda de pokemones */
+
+
+  .filtered-type-normal:hover {
+    background-color: #929191;
+  }
+  .filtered-type-fighting:hover {
+    background-color: #ab0000;
+  }
+  .filtered-type-flying:hover {
+    background-color: #03a9f4;
+  }
+  .filtered-type-poison:hover {
+    background-color: #9c27b0;
+  }
+  .filtered-type-ground:hover {
+    background-color: #b08400;
+  }
+  .filtered-type-rock:hover {
+    background-color: #9e5e00;
+  }
+  .filtered-type-bug:hover {
+    background-color: #8d9c00;
+  }
+  .filtered-type-ghost:hover {
+    background-color: #512da8;
+  }
+  .filtered-type-steel:hover {
+    background-color: #85929E;
+  }
+  .filtered-type-fire:hover {
+    background-color: #ff3f03;
+  }
+  .filtered-type-water:hover {
+    background-color: #0328f4;
+  }
+  .filtered-type-grass:hover {
+    background-color: #00a60f;
+  }
+  .filtered-type-electric:hover {
+    background-color: #ffbf00;
+  }
+  .filtered-type-psychic:hover {
+    background-color: #ff00c4;
+  }
+  .filtered-type-ice:hover {
+    background-color: #00eee7;
+  }
+  .filtered-type-dragon:hover {
+    background-color: #4908bd;
+  }
+  .filtered-type-dark:hover {
+    background-color: #3e2723;
+  }
+  .filtered-type-fairy:hover {
+    background-color: #e440ff;
+  }
+  .filtered-type-unknown:hover {
+    background-color: #455a64;
+  }
+  .filtered-type-shadow:hover {
+    background-color: black;
+  }
