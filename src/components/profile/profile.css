@@ -56,3 +56,29 @@
     background: rgb(79 208 255 / 57%);
     cursor: pointer;
   }
+
+
+
+  @media screen and (max-width: 800px) {
+    .profile-options {
+      width: 40%;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .profile-options {
+      width: 50%;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    .profile-options {
+      width: 60%;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    .profile-options {
+      width: 70%;
+    }
+  }

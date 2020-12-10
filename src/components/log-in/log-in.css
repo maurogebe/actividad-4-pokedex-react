@@ -80,3 +80,10 @@
   .link-log-to-sign {
     color: #00445d;
   }
+
+
+  @media screen and (max-width: 600px) {
+    .contain-log-in {
+      width: 90%;
+    }
+  }
