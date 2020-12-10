@@ -82,3 +82,9 @@
       width: 70%;
     }
   }
+
+  @media screen and (max-width: 300px) {
+    .profile-options {
+      width: 80%;
+    }
+  }

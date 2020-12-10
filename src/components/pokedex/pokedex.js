@@ -7,7 +7,6 @@ import {
 // Import Components
 import SideLeft from './side-left/side-left'
 import SideRight from './side-right/side-right'
-import EffectBg from './effect-bg/effect-bg'
 import ContainerPokemons from './container-pokemons/container-pokemons'
 import ContainerRegions from './container-regions/container-regions'
 import DetailPokemon from './detail-pokemon/detail-pokemon'
@@ -74,7 +73,6 @@ function Pokedex(props) {
 
                 
             </div>
-            <EffectBg />
         </>
     )
 

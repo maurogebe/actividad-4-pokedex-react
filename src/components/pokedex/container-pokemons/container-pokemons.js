@@ -1,8 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {
-   useParams, 
-   Link,
-   useHistory
+   useParams
   } from "react-router-dom";
 // import AWS from 'aws-sdk'
 
@@ -15,9 +13,6 @@ import PokemonSearch from './pokemon-search/pokemon-search'
 
 // Import style
 import './container-pokemons.css';
-
-// Import Icons
-import { ArrowBackIos, ArrowForwardIos } from '@material-ui/icons';
 
 //  Import Material UI
 import { Skeleton } from '@material-ui/lab'
@@ -35,18 +30,8 @@ function ContainerPokemons(props) {
   let [scrollActive, setScrollActive] = useState(true)
   let [scrollFinish, setScrollFinish] = useState(true)
 
-  // Estados para la busqueda de pokemones
-  let [listSearchPokemon, setListSearchPokemon] = useState([])
-  let [listSearchPokemonDetail, setListSearchPokemonDetail] = useState([])
-  let [valueSearchInput, setValueSearchInput] = useState('')
-  let [onlyRequestSearch, setOnlyRequestSearch] = useState(true)
-
-
   let valueScroll = useRef(0)
-  const refPokemonSearch = useRef()
-  let refListFilteredPokemon = useRef()
   let { regionName } = useParams()
-  const history = useHistory()
 
 
   // Hacer la peticion a la API cada vez que entren por la url o escogiendo la region 
