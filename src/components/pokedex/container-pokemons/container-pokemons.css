@@ -38,58 +38,8 @@
     cursor: pointer;
     color: #002f40;
   }
-  .pokemon-search {
-    border: none;
-    border-radius: 20px;
-    outline: none;
-    height: 4vh;
-    padding-left: 5%;
-    background-color: #002f403b;
-    color: #002f40;
-    font-size: 16px;
-    font-weight: bold;
-  }
-  .pokemon-search::-webkit-input-placeholder {
-    color: #002f40;
-    font-weight: normal;
-  }
-  .button-pokemon-search {
-    position: absolute;
-    border: 0;
-    outline: none;
-    background: transparent;
-    right: 0%;
-    top: 25%;
-    height: 50%;
-    cursor: pointer;
-  }
-  .form-pokemon-search .icon-submit-pokemon-search {
-    height: 100%;
-    color: #002f40;
-  }
+  
 
-  .filtered-pokemon-search {
-    position: absolute;
-    /* padding-left: 3%; */
-    margin-top: 3%;
-    width: 87%;
-    border-radius: 20px;
-    z-index: 2;
-    overflow: auto;
-    background-color: #2e9ec5;
-  }
-  .filtered-pokemon-option {
-    padding-left: 5%;
-    display: flex;
-    align-items: center;
-    height: 8vh;
-  }
-  .filtered-pokemon-name {
-    padding-bottom: 3%;
-  }
-  .filtered-pokemon-img {
-    height: 100%;
-  }
 
   /* Responsive */
 

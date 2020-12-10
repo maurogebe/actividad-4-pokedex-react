@@ -11,6 +11,7 @@ import { regions } from '../../../sources'
 
 // Import Components
 import Card from './card/card';
+import PokemonSearch from './pokemon-search/pokemon-search'
 
 // Import style
 import './container-pokemons.css';
@@ -111,97 +112,13 @@ function ContainerPokemons(props) {
         }
       }
     }
-    
-
-  }
-
-  const pokemonSearch = (event) => {
-    event.preventDefault()
-
-    history.push(`/pokedex/regions/${regionName}/${refPokemonSearch.current.value.toLowerCase()}`)
-  }
-
-
-
-  // Cuando haga clic en el input para hacer uns busqueda, va a hacer una peticion de todos los pokemones, con sus detalles para mostrar las opciones mientras va escribiendo
-  const requestSearchPokemon = async() => {
-    if(onlyRequestSearch) {
-      const url = 'https://pokeapi.co/api/v2/pokemon'
-      let response = await fetch(`${url}?limit=893&offset=0`);
-      let data = await response.json();
-      let results = data.results;
-      let details = await props.getDetail(results)
-      setListSearchPokemonDetail(details)
-      setListSearchPokemon(results)
-      setOnlyRequestSearch(false)
-    }
-  }
-
-
-  // Capturamos el valor de input con onChange
-  const catchValueSearchInput = (event) => {
-    setValueSearchInput(event.target.value)
-  }
-
-
-  // Conseguimos las imagenes de cada pokemon filtrado
-  const getImgPokemon = (pokemon) => {
-    const detailPerPokemon = listSearchPokemonDetail.find( poke => pokemon === poke.name)
-    return detailPerPokemon.sprites.front_default
   }
 
   return (
     <>
-      <div className="search">
-        <Link to={{
-            pathname: `/pokedex/regions`
-        }}>
-            <ArrowBackIos className="icon-back-ios-regions" fontSize="large" />
-        </Link>
-        <div className="container-pokemon-search">
-          <form className="form-pokemon-search" onSubmit={pokemonSearch}>
-            <input onClick={() => requestSearchPokemon()} onChange={catchValueSearchInput} className="pokemon-search" ref={refPokemonSearch} type="text" placeholder="Search Pokemon"/>
-            <button className="button-pokemon-search" type="submit">
-              <ArrowForwardIos className="icon-submit-pokemon-search" fontSize="small" />
-            </button>
-          </form>
-          <div ref={refListFilteredPokemon} className="filtered-pokemon-search">
-            {
-              // Filtramos los pokemones segun vamos buscando
-              listSearchPokemon
-              .filter( pokemon => {
-                if(valueSearchInput === '') {
-                  return null
-                } else {
-                  return (
-                    pokemon.name
-                      .toLowerCase()
-                      .includes(
-                        valueSearchInput
-                          .toLowerCase()
-                      )
-                  )
-                }
-              })
-              .map( (poke, index) => {
-                if(index > 5) {
-                  refListFilteredPokemon.current.style.height = "40vh"
-                } else {
-                  refListFilteredPokemon.current.style.height = ""
-                }
-                return (
-                  <Link>
-                    <div className="filtered-pokemon-option">
-                      <img className="filtered-pokemon-img" src={getImgPokemon(poke.name)}/>
-                      <h3 className="filtered-pokemon-name">{poke.name}</h3>
-                    </div>
-                  </Link>
-                )
-              })
-            }
-          </div>
-        </div>
-      </div>
+      <PokemonSearch 
+        getDetail={props.getDetail}
+      />
       <div ref={valueScroll} onScroll={getEndScrollFn} className="pokedex-container">
       {
           pokemons.map( (pokemon, index) => {
