@@ -39,7 +39,7 @@ function Card(props) {
             refImgPokemon.current.style.bottom = '5%'
             refImgPokemon.current.style.height = '65%'
         } else {
-            const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Shiny-Gen-8/${props.idPokemon}.gif`
+            const urlImg = props.detailsPokemon.sprites.other['official-artwork'].front_default
             setImgPokemon(urlImg)
             refImgPokemon.current.style.bottom = '0%'
             refImgPokemon.current.style.height = '65%'

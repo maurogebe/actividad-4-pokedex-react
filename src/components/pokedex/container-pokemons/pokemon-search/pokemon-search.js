@@ -54,7 +54,7 @@ function PokemonSearch(props) {
   // Conseguimos las imagenes de cada pokemon filtrado
   const getImgPokemon = (pokemon) => {
     const detailPerPokemon = listSearchPokemonDetail.find( poke => pokemon === poke.name)
-    return detailPerPokemon.sprites.front_default
+    return detailPerPokemon.sprites.other['official-artwork'].front_default
   }
 
   // Consiguiendo el valor de la region segun su id para agregarlo en la ruta
@@ -101,6 +101,13 @@ function PokemonSearch(props) {
   }
 
 
+  // Cambiando imagen por si hay error
+  const changeImgForError = (pokemon) => {
+    const detailPerPokemon = listSearchPokemonDetail.find( poke => pokemon === poke.name)
+    return detailPerPokemon.sprites.other.dream_world.front_default
+  }
+
+
   return (
     <>
       <div className="search">
@@ -144,7 +151,7 @@ function PokemonSearch(props) {
                   return (
                     <Link className="filtered-pokemon-link" to={`/pokedex/regions/${getRegionPokemonRoute(poke.name)}/${poke.name}`}>
                       <div className={`filtered-pokemon-option ${getTypePokemonHover(poke.name)}`}>
-                        <img className="filtered-pokemon-img" src={getImgPokemon(poke.name)}/>
+                        <img className="filtered-pokemon-img" src={getImgPokemon(poke.name)} onError={changeImgForError(poke.name)} />
                         <h3 className="filtered-pokemon-name">{firstLetterMayus(poke.name)}</h3>
                       </div>
                     </Link>

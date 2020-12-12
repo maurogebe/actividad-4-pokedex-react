@@ -17,7 +17,8 @@ function DetailPokemon(props) {
 
     let [sourceRegions, setSourceRegions] = useState(regions)
     let [currentRegion, setCurrentRegion] = useState(0)
-    let [pokemonDetail, setPokemonDetail] = useState( { types: [], stats: [] } )
+    let [pokemonDetail, setPokemonDetail] = useState( { types: [], stats: [], sprites: { other: {} } } )
+    let [pokemonImg, setPokemonImg] = useState()
     let [showPokemonDetail, setShowPokemonDetail] = useState(false)
     let { regionName, pokemonName } = useParams()
 
@@ -46,6 +47,43 @@ function DetailPokemon(props) {
 
         })
         setShowPokemonDetail(true)
+
+
+        if(pokemonDetail.id <= 151) {
+            const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Gen_1/${firstLetterMayus(pokemonName)}.gif`
+            setPokemonImg(urlImg)
+            // return urlImg
+        } else if(pokemonDetail.id <= 251) {
+            const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Gen_2/${firstLetterMayus(pokemonName)}.gif`
+            setPokemonImg(urlImg)
+            // return urlImg
+        } else if(pokemonDetail.id <= 386) {
+            const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Gen_3/${firstLetterMayus(pokemonName)}.gif`
+            setPokemonImg(urlImg)
+            // return urlImg
+        } else if(pokemonDetail.id <= 493) {
+            const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Gen-4/${firstLetterMayus(pokemonName)}.gif`
+            setPokemonImg(urlImg)
+            // return urlImg
+        } else if(pokemonDetail.id <= 649) {
+            const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Shiny-Gen-5/${firstLetterMayus(pokemonName)}.gif`
+            setPokemonImg(urlImg)
+            // return urlImg
+        } else if(pokemonDetail.id <= 721) {
+            const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Shiny-Gen-6/${firstLetterMayus(pokemonName)}.gif`
+            setPokemonImg(urlImg)
+            // return urlImg
+        } else if(pokemonDetail.id <= 809) {
+            const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Shiny-Gen-7/${firstLetterMayus(pokemonName)}.gif`
+            setPokemonImg(urlImg)
+            // return urlImg
+        } else {
+            const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Shiny-Gen-8/${pokemonDetail.id}.gif`
+            setPokemonImg(urlImg)
+            // return urlImg
+        }
+
+
     }, [pokemonDetail])
 
     // Metodo para devolver la primera una palabra sin cambiar su valor
@@ -53,36 +91,10 @@ function DetailPokemon(props) {
         return string.charAt(0).toUpperCase() + string.slice(1)
     }
 
-
-    // Accediendo a gif dependiendo de la region
-    const getImgPerRegion = (name, id) => {
-
-        if(id <= 151) {
-            const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Gen_1/${firstLetterMayus(name)}.gif`
-            return urlImg
-        } else if(id <= 251) {
-            const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Gen_2/${firstLetterMayus(name)}.gif`
-            return urlImg
-        } else if(id <= 386) {
-            const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Gen_3/${firstLetterMayus(name)}.gif`
-            return urlImg
-        } else if(id <= 493) {
-            const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Gen-4/${firstLetterMayus(name)}.gif`
-            return urlImg
-        } else if(id <= 649) {
-            const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Shiny-Gen-5/${firstLetterMayus(name)}.gif`
-            return urlImg
-        } else if(id <= 721) {
-            const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Shiny-Gen-6/${firstLetterMayus(name)}.gif`
-            return urlImg
-        } else if(id <= 809) {
-            const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Shiny-Gen-7/${firstLetterMayus(name)}.gif`
-            return urlImg
-        } else {
-            const urlImg = `https://gifs-pokedex.s3.amazonaws.com/Shiny-Gen-8/${id}.gif`
-            return urlImg
-        }
-
+    const changeImgForError = () => {
+        const urlImg = pokemonDetail.sprites.other['official-artwork'].front_default
+        setPokemonImg(urlImg)
+        // return pokemonDetail.sprites.other['official-artwork'].front_default
     }
 
     return (
@@ -123,7 +135,11 @@ function DetailPokemon(props) {
                 </div>                
             </div>
 
-            <img className="detail-pokemon__img-pokemon" src={getImgPerRegion(pokemonName, pokemonDetail.id)} alt={pokemonName} />
+            {
+                pokemonDetail.types.length != 0 ? (
+                    <img className="detail-pokemon__img-pokemon" src={pokemonImg} alt={pokemonName} onError={changeImgForError} />
+                ) : null
+            }
         </div>
     )
 }
