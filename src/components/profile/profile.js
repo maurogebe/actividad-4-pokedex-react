@@ -19,6 +19,15 @@ export default function Profile(props) {
         firebase.auth().onAuthStateChanged(user => {
           setUser(user)
         });
+
+        firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
+            // Send token to your backend via HTTPS
+            console.log(idToken)
+            // ...
+          }).catch(function(error) {
+            // Handle error
+          });
+
       }, [])
 
     // const showProfileOptionsFn = () => {

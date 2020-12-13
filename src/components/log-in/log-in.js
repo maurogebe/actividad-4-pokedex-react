@@ -10,7 +10,7 @@ import './log-in.css'
 
 // Import Icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGoogle } from '@fortawesome/free-brands-svg-icons'
+import { faGoogle, faFacebookF } from '@fortawesome/free-brands-svg-icons'
 
 
 function LogIn(props) {
@@ -18,6 +18,7 @@ function LogIn(props) {
     let email = useRef()
     let password = useRef()
     const googleProvider = new firebase.auth.GoogleAuthProvider()
+    const facebookProvider = new firebase.auth.FacebookAuthProvider()
     const history = useHistory()
 
     useEffect(() => {
@@ -34,11 +35,31 @@ function LogIn(props) {
         event.preventDefault()
         try {
             let result = await firebase.auth().signInWithPopup(googleProvider)
+            let token = result.credential.accessToken
             console.log("Autenticado satisfactoriamente", result.user);
             // props.setUserFn(result.user)
             history.push('/pokedex')
         } catch (error) {
             console.log("Error en la autenticacion", error);
+        }
+
+    }
+
+
+    // Iniciando sesion con facebook
+    const showFacebookPopup = async(event) => {
+        event.preventDefault()
+        facebookProvider.addScope('user_photos')
+        try {
+            let result = await firebase.auth().signInWithPopup(facebookProvider)
+            let token = result.credential.accessToken
+            console.log(token)
+            console.log("Autenticado satisfactoriamente", result.user);
+            // props.setUserFn(result.user)
+            history.push('/pokedex')
+        } catch (error) {
+            console.log("Error en la autenticacion", error);
+            console.log("Error de Token", error.credential)
         }
 
     }
@@ -67,8 +88,12 @@ function LogIn(props) {
                     <input ref={password} className="input-log" id="password" type="password" minLength="8" required />
                     <input className="button-log" type="submit" />
                     <h4 className="text-log">OR</h4>
-                    <button onClick={showGooglePopup} className="button-google-log">
-                        <FontAwesomeIcon className="icon-google" icon={faGoogle} size="lg" /> Continue whit Google</button>
+                    <button onClick={showGooglePopup} className="button-social-log">
+                        <FontAwesomeIcon className="icon-social" icon={faGoogle} size="lg" /> Continue whit Google
+                    </button>
+                    <button onClick={showFacebookPopup} className="button-social-log">
+                        <FontAwesomeIcon className="icon-social" icon={faFacebookF} size="lg" /> Continue whit Facebook
+                    </button>
                     <p className="text-log text-log--position">
                     You are not a member? <Link to="/sign-in" className="link-log-to-sign">Sign In</Link>
                     </p>

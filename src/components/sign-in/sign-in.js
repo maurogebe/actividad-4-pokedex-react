@@ -10,7 +10,7 @@ import './sign-in.css'
 
 // Import Icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGoogle } from '@fortawesome/free-brands-svg-icons'
+import { faGoogle, faFacebookF } from '@fortawesome/free-brands-svg-icons'
 
 
 function SignIn(props) {
@@ -18,19 +18,37 @@ function SignIn(props) {
     let email = useRef()
     let password = useRef()
     const googleProvider = new firebase.auth.GoogleAuthProvider
+    const facebookProvider = new firebase.auth.FacebookAuthProvider
     // const emailProvider = new firebase.auth.EmailAuthProvider
-    const historyPokedex = useHistory()
+    const history = useHistory()
 
     const showGooglePopup = async(event) => {
         event.preventDefault()
         try {
             let result = await firebase.auth().signInWithPopup(googleProvider)
+            let token = result.credential.accessToken
             console.log("Autenticado satisfactoriamente", result.user);
             props.setUserFn(result.user)
-            historyPokedex.push('/pokedex')
+            history.push('/pokedex')
         } catch (error) {
             console.log("Error en la autenticacion", error);
         }
+    }
+
+
+    // Iniciando sesion con facebook
+    const showFacebookPopup = async(event) => {
+        event.preventDefault()
+        try {
+            let result = await firebase.auth().signInWithPopup(facebookProvider)
+            let token = result.credential.accessToken
+            console.log("Autenticado satisfactoriamente", result.user);
+            // props.setUserFn(result.user)
+            history.push('/pokedex')
+        } catch (error) {
+            console.log("Error en la autenticacion", error);
+        }
+
     }
 
     const showCreateUserWithEmail = async(event) => {
@@ -39,7 +57,7 @@ function SignIn(props) {
             let result = await firebase.auth().createUserWithEmailAndPassword(email.current.value, password.current.value)
             console.log("Autenticado satisfactoriamente", result.user);
             props.setUserFn(result.user)
-            historyPokedex.push('/pokedex')
+            history.push('/pokedex')
         } catch (error) {
             alert('')
             console.log("Error en la autenticacion", error);
@@ -58,8 +76,11 @@ function SignIn(props) {
                     <input ref={password} className="input-sign" id="password" type="password" minLength="8" required/>
                     <input className="button-sign" type="submit" />
                     <h4 className="text-sign">OR</h4>
-                    <button onClick={showGooglePopup} className="button-google-sign">
-                        <FontAwesomeIcon className="icon-google" icon={faGoogle} size="lg" /> Continue whit Google  
+                    <button onClick={showGooglePopup} className="button-social-sign">
+                        <FontAwesomeIcon className="icon-social" icon={faGoogle} size="lg" /> Continue whit Google  
+                    </button>
+                    <button onClick={showFacebookPopup} className="button-social-sign">
+                        <FontAwesomeIcon className="icon-social" icon={faFacebookF} size="lg" /> Continue whit Facebook  
                     </button>
                     <p className="text-sign text-sign--position">
                     You are already a member? <Link to="/" className="link-sign-to-log">Log In</Link>

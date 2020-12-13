@@ -43,6 +43,7 @@
     text-align: center;
     width: 100%;
     left: 0;
+    color: #95e3ff;
   }
   .button-log {
     width: 25%;
@@ -56,7 +57,7 @@
     background: rgba(24, 129, 164, 1);
     color: #37c9ff;
   }
-  .button-google-log {
+  .button-social-log {
     width: 50%;
     height: 40px;
     display: flex;
@@ -73,12 +74,12 @@
     font-weight: bolder;
     color: #00445d;
   }
-  .icon-google {
+  .icon-social {
     position: absolute;
     left: 4%;
   }
   .link-log-to-sign {
-    color: #00445d;
+    color: #95e3ff;
   }
 
 
