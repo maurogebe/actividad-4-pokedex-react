@@ -29,6 +29,7 @@ function Main() {
   let [showDirectlyAccess, setShowDirectlyAccess] = useState(true)
   let [showShowDirectlyAccess, setShowShowDirectlyAccess] = useState(true)
   let [showProfileOptions, setShowProfileOptions] = useState(false)
+  let [showListFilteredPokemon, setShowListFilteredPokemon] = useState(false)
   const refProfileOptions = useRef()
   const history = useHistory()
   const { regionName } = useParams()
@@ -96,11 +97,20 @@ function Main() {
     }
   }
 
-  const showProfileOptionsFalseContextFn = () => {
+
+  // ocultamos el detalle del profile y los pokemones buscados tocando en cualquier parte de la pantalla
+  const showProfileOptionsAndPokemonsSearch = () => {
 
     if(showProfileOptions) {
       refProfileOptions.current.style.display = 'none'
       setShowProfileOptions(false)
+    }
+
+    if(showListFilteredPokemon) {
+      const idFilteredPokemon = document.getElementById('filtered-pokemon')
+      idFilteredPokemon.style.height = ''
+      setShowListFilteredPokemon(false)
+      
     }
 }
 
@@ -118,7 +128,7 @@ const showProfileOptionsFn = () => {
 
 
 return (
-  <div className="container-style-pokedex" onClick={showProfileOptionsFalseContextFn}>
+  <div className="container-style-pokedex" onClick={showProfileOptionsAndPokemonsSearch}>
     <Switch>
 
       <Route path="/" exact>
@@ -142,6 +152,8 @@ return (
           directlyAccessPathFn={directlyAccessPathFn}
           showProfileOptionsFn={showProfileOptionsFn}
           refProfileOptions={refProfileOptions}
+          showListFilteredPokemon={showListFilteredPokemon}
+          setShowListFilteredPokemon={setShowListFilteredPokemon}
         />
       </PrivateRoute>
     </Switch>

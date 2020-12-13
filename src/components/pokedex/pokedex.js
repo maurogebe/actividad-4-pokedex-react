@@ -52,6 +52,8 @@ function Pokedex(props) {
                         <ContainerPokemons
                             imgPokemonsFn={props.imgPokemonsFn}
                             getDetail={props.getDetail}
+                            showListFilteredPokemon={props.showListFilteredPokemon}
+                            setShowListFilteredPokemon={props.setShowListFilteredPokemon}
                         />
                     </div>
                 </PrivateRoute>

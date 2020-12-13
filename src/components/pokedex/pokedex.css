@@ -88,8 +88,9 @@
     height: 65%;
   }
   .container-pokemon {
-    width: 94%;
-    left: 3%;
+    width: 84%;
+    left: 8%;
+    height: 96.5%;
   }
 }
 
@@ -97,7 +98,7 @@
 
 @media screen and (max-width: 414px) {
   .container-pokemon {
-    width: 95%;
-    left: 5%;
+    width: 92%;
+    left: 4%;
   }
 }

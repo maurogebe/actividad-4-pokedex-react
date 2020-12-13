@@ -19,6 +19,7 @@ function PokemonSearch(props) {
   let [valueSearchInput, setValueSearchInput] = useState('')
   let [onlyRequestSearch, setOnlyRequestSearch] = useState(true)
   let [showSearchSkeleton, setShowSearchSkeleton] = useState(false)
+  let [showListFilteredPokemon, setShowListFilteredPokemon] = useState(false)
 
   const refPokemonSearch = useRef()
   let refListFilteredPokemon = useRef()
@@ -26,6 +27,8 @@ function PokemonSearch(props) {
 
   // Cuando haga clic en el input para hacer uns busqueda, va a hacer una peticion de todos los pokemones, con sus detalles para mostrar las opciones mientras va escribiendo
   const requestSearchPokemon = async() => {
+
+    props.setShowListFilteredPokemon(true)
     
     if(onlyRequestSearch) {
       const url = 'https://pokeapi.co/api/v2/pokemon'
@@ -114,56 +117,55 @@ function PokemonSearch(props) {
         <Link to={{
             pathname: `/pokedex/regions`
         }}>
-            <ArrowBackIos className="icon-back-ios-regions" fontSize="large" />
+            <ArrowBackIos className="icon-back-ios-regions" />
         </Link>
         <div className="container-pokemon-search">
           <form className="form-pokemon-search">
             <input onClick={() => requestSearchPokemon()} onChange={catchValueSearchInput} className="pokemon-search" ref={refPokemonSearch} type="text" placeholder="Search Pokemon"/>
-            <button className="button-pokemon-search" type="submit">
-              <ArrowForwardIos className="icon-submit-pokemon-search" fontSize="small" />
-            </button>
           </form>
-          <div ref={refListFilteredPokemon} className="filtered-pokemon-search">
+          <div ref={refListFilteredPokemon} id="filtered-pokemon" className="filtered-pokemon-search">
             {
               // Filtramos los pokemones segun vamos buscando
-              listSearchPokemonDetail.length != 0 ? (
-                listSearchPokemon
-                .filter( pokemon => {
-                  if(valueSearchInput === '') {
-                    return null
-                  } else {
+              props.showListFilteredPokemon ? (
+                listSearchPokemonDetail.length != 0 ? (
+                  listSearchPokemon
+                  .filter( pokemon => {
+                    if(valueSearchInput === '') {
+                      return null
+                    } else {
+                      return (
+                        pokemon.name
+                          .toLowerCase()
+                          .includes(
+                            valueSearchInput
+                              .toLowerCase()
+                          )
+                      )
+                    }
+                  })
+                  .map( (poke, index) => {
+                    if(index > 5) {
+                      refListFilteredPokemon.current.style.height = "40vh"
+                    } else {
+                      refListFilteredPokemon.current.style.height = ""
+                    }
                     return (
-                      pokemon.name
-                        .toLowerCase()
-                        .includes(
-                          valueSearchInput
-                            .toLowerCase()
-                        )
+                      <Link className="filtered-pokemon-link" to={`/pokedex/regions/${getRegionPokemonRoute(poke.name)}/${poke.name}`}>
+                        <div className={`filtered-pokemon-option ${getTypePokemonHover(poke.name)}`}>
+                          <img className="filtered-pokemon-img" src={getImgPokemon(poke.name)} onError={changeImgForError(poke.name)} />
+                          <h3 className="filtered-pokemon-name">{firstLetterMayus(poke.name)}</h3>
+                        </div>
+                      </Link>
                     )
-                  }
-                })
-                .map( (poke, index) => {
-                  if(index > 5) {
-                    refListFilteredPokemon.current.style.height = "40vh"
-                  } else {
-                    refListFilteredPokemon.current.style.height = ""
-                  }
-                  return (
-                    <Link className="filtered-pokemon-link" to={`/pokedex/regions/${getRegionPokemonRoute(poke.name)}/${poke.name}`}>
-                      <div className={`filtered-pokemon-option ${getTypePokemonHover(poke.name)}`}>
-                        <img className="filtered-pokemon-img" src={getImgPokemon(poke.name)} onError={changeImgForError(poke.name)} />
-                        <h3 className="filtered-pokemon-name">{firstLetterMayus(poke.name)}</h3>
+                  })
+                ) : (
+                  showSearchSkeleton ? (
+                      <div className='container-skeleton'>
+                          <Skeleton className="skeleton" variant="rect"/>
                       </div>
-                    </Link>
-                  )
-                })
-              ) : (
-                showSearchSkeleton ? (
-                    <div className='container-skeleton'>
-                        <Skeleton className="skeleton" variant="rect"/>
-                    </div>
-                ) : null
-              )
+                  ) : null
+                )
+              ) : null
             }
           </div>
         </div>

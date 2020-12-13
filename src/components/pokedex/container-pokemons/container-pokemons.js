@@ -103,6 +103,8 @@ function ContainerPokemons(props) {
     <>
       <PokemonSearch 
         getDetail={props.getDetail}
+        showListFilteredPokemon={props.showListFilteredPokemon}
+        setShowListFilteredPokemon={props.setShowListFilteredPokemon}
       />
       <div ref={valueScroll} onScroll={getEndScrollFn} className="pokedex-container">
       {
@@ -116,12 +118,36 @@ function ContainerPokemons(props) {
                   idPokemon={pokemonsDetails[index].id}
                   detailsPokemon={pokemonsDetails[index]}
                 />
-              ) : (
-                <Skeleton variant="rect" height={150}/>
-              )
+              ) : null
             )
           })
           
+      }
+      {
+        scrollFinish ? (
+          <>
+            <div className="container-scroll-pokemon">
+              <Skeleton className="skeleton-card-pokemon" variant='rect' width={'100%'} height={'100%'}/>
+            </div>
+            <div className="container-scroll-pokemon">
+              <Skeleton className="skeleton-card-pokemon" variant='rect' width={'100%'} height={'100%'}/>
+            </div>
+          </>
+        ) : null
+      }
+      {
+        window.screen.width > 950 ? (
+          <div className="container-scroll-pokemon">
+            <Skeleton className="skeleton-card-pokemon" variant='rect' width={'100%'} height={'100%'}/>
+          </div>
+        ) : null
+      }
+      {
+        window.screen.width > 1200 ? (
+          <div className="container-scroll-pokemon">
+            <Skeleton className="skeleton-card-pokemon" variant='rect' width={'100%'} height={'100%'}/>
+          </div>
+        ) : null
       }
       </div>
     </>

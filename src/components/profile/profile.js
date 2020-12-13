@@ -19,29 +19,7 @@ export default function Profile(props) {
         firebase.auth().onAuthStateChanged(user => {
           setUser(user)
         });
-
-        firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
-            // Send token to your backend via HTTPS
-            console.log(idToken)
-            // ...
-          }).catch(function(error) {
-            // Handle error
-          });
-
-      }, [])
-
-    // const showProfileOptionsFn = () => {
-
-    //     if(showProfileOptions) {
-    //         refProfileOptions.current.style.display = 'none'
-    //         setShowProfileOptions(false)
-    //     } else {
-    //         refProfileOptions.current.style.display = 'block'
-    //         setShowProfileOptions(true)
-    //         console.log(user)
-    //     }
-    // }
-
+    })
     // Cerrar sesion
     const signOut = () => {
         firebase.auth().signOut().then(function() {
@@ -50,7 +28,6 @@ export default function Profile(props) {
           }).catch(function(error) {
 
           });
-          
     }
 
     return (
