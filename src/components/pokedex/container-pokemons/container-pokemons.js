@@ -53,7 +53,6 @@ function ContainerPokemons(props) {
     }
     getPokemons()
 
-    // console.log(details)
   }, [pokemonPerPage])
 
 
@@ -79,14 +78,14 @@ function ContainerPokemons(props) {
     if(scrollFinish) {
       if(scrollActive) {
         if((pokemonPerPage + 40) < currentRegion.limitPokemon) {
-          let currentScroll = valueScroll.current.scrollTop + valueScroll.current.offsetHeight
-          if(currentScroll === valueScroll.current.scrollHeight) {
+          let currentScroll = Math.round(valueScroll.current.scrollTop) + Math.round(valueScroll.current.offsetHeight)
+          if(currentScroll === Math.round(valueScroll.current.scrollHeight)) {
             setPokemonPerPage(pokemonPerPage + 20)
             setScrollActive(false)
           }
         } else {
-          let currentScroll = valueScroll.current.scrollTop + valueScroll.current.offsetHeight
-          if(currentScroll === valueScroll.current.scrollHeight) {
+          let currentScroll = Math.round(valueScroll.current.scrollTop) + Math.round(valueScroll.current.offsetHeight)
+          if(currentScroll === Math.round(valueScroll.current.scrollHeight)) {
             const finishScrollLimit = currentRegion.limitPokemon - (pokemonPerPage + 20)
             setPokemonPerPage(currentRegion.limitPokemon - finishScrollLimit)
             setLimitPokemon(finishScrollLimit)
